@@ -19,4 +19,18 @@
         min-height: 100svh;
         background-color: #CECECE;
     }
+
+    .menu {
+        width: 10%;
+        min-height: 100vh;
+        min-height: 100svh;
+        background-color: black;
+        color: white;
+    }
+
+    #svgmenu {
+        cursor: pointer;
+        margin-left: 10%;
+        margin-top: 20px;
+    }
 }
