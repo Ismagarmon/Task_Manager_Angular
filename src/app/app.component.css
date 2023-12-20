@@ -1,3 +1,21 @@
+.flex-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.flex-cc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 
@@ -22,6 +40,7 @@
 
     .menu {
         width: 10%;
+        overflow-x: visible;
         min-height: 100vh;
         min-height: 100svh;
         background-color: black;
@@ -32,5 +51,28 @@
         cursor: pointer;
         margin-left: 10%;
         margin-top: 20px;
+    }
+
+    #menu {
+        list-style: none;
+    }
+
+    #menu li {
+        cursor: pointer;
+        border: 5px;
+        margin-right: 10%;
+    }
+
+    #menu li:hover {
+        background-color: gray;
+    }
+
+    #menu li svg {
+        margin-left: 10%;
+    }
+
+    #menu li p {
+        display: inline-block;
+        margin-left: 10%;
     }
 }
