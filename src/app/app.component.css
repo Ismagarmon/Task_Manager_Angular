@@ -1,3 +1,12 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
 .flex-sb {
     display: flex;
     justify-content: space-between;
@@ -10,10 +19,21 @@
     align-items: center;
 }
 
+.flex-v {
+    display: flex;
+    align-items: center;
+}
+
 .flex-cc {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ctn {
+    width: 100%;
+    height: 100svh;
+    background-color: #CECECE;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -31,48 +51,76 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 
-    .ctn {
-        width: 100%;
-        min-height: 100vh;
-        min-height: 100svh;
-        background-color: #CECECE;
-    }
-
     .menu {
         width: 10%;
-        overflow-x: visible;
-        min-height: 100vh;
-        min-height: 100svh;
-        background-color: black;
+        height: 100%;
         color: white;
+        background-color: black;
     }
 
-    #svgmenu {
+    #arrow {
         cursor: pointer;
-        margin-left: 10%;
-        margin-top: 20px;
     }
 
     #menu {
+        position: relative;
         list-style: none;
+        height: 100%;
     }
 
     #menu li {
+        width: 90%;
+        margin: 0.5rem auto;
+        height: 3rem;
         cursor: pointer;
-        border: 5px;
-        margin-right: 10%;
+        position: relative;
     }
 
-    #menu li:hover {
+    #menu li:first-child {
+        margin-top: 0px;
+    }
+
+    #menu li:nth-child(2) {
+        cursor: default;
+    }
+
+    #menu li:nth-child(3),
+    #menu li:nth-child(4),
+    #menu li:nth-child(5),
+    #menu li:nth-child(6),
+    #menu li:nth-child(7){
+        transition: all 0.3s;
+        border-radius: 5px;
+    }
+
+    #menu li:nth-child(3) p,
+    #menu li:nth-child(4) p,
+    #menu li:nth-child(5) p,
+    #menu li:nth-child(6) p,
+    #menu li:nth-child(7) p{
+        margin-left: 20%;
+    }
+
+    #menu li:nth-child(3) i,
+    #menu li:nth-child(4) i,
+    #menu li:nth-child(5) i,
+    #menu li:nth-child(6) i,
+    #menu li:nth-child(7) i{
+        margin-left: 10%;
+    }
+
+    #menu li:nth-child(3):hover,
+    #menu li:nth-child(4):hover,
+    #menu li:nth-child(5):hover,
+    #menu li:nth-child(6):hover,
+    #menu li:nth-child(7):hover{
         background-color: gray;
     }
 
-    #menu li svg {
-        margin-left: 10%;
-    }
-
-    #menu li p {
-        display: inline-block;
-        margin-left: 10%;
+    #menu li:last-child {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 1rem;
     }
 }

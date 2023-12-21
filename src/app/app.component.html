@@ -1,18 +1,34 @@
 <router-outlet></router-outlet>
 <div class="ctn">
     <div class="menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 2048 2048" #svgmenu id="svgmenu">
-            <path fill="currentColor"
-                d="M384 1280v-128h1664v128zm0 384v-128h1664v128zm0-768V768h1664v128zm0-512h1664v128H384z" />
-        </svg>
-        <ul id="menu">
-            <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048">
-                    <path fill="white" d="m1024 166l941 941l-90 90l-83-82v805h-512v-640H768v640H256v-805l-83 82l-90-90z" />
-                </svg>
-                <p>Inicio</p>
+        
+        <ul id="menu" #menu>
+            <li class="flex-cc">
+                <i class='bx bx-left-arrow-alt' id="arrow" (click)="changepropierties(menu)"></i>
             </li>
-
+            <li class="flex-cc">
+                <p>Welcome user: {{user}}</p>
+            </li>
+            <li class="flex-v">
+                <i class='bx bxs-dashboard' style='color:#ffffff' ></i>
+                <p>DashBoard</p>
+            </li>
+            <li class="flex-v">
+                <i class='bx bxs-chat' style='color:#ffffff' ></i>
+                <p>Message</p>
+            </li>
+            <li class="flex-v">
+                <i class='bx bxs-home-alt-2' style='color:#ffffff' ></i>
+                <p>Tasks</p>
+            </li>
+            <li class="flex-v">
+                <i class='bx bxs-user' style='color:#ffffff' ></i>
+                <p>Profile</p>
+            </li>
+            <li class="flex-v">
+                <i class='bx bx-log-out' style='color:#ffffff' ></i>
+                <p>Logout</p>
+            </li>
         </ul>
     </div>
-
 </div>
