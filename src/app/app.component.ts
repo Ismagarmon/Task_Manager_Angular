@@ -1,12 +1,11 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, FormsModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,6 +16,8 @@ export class AppComponent implements OnChanges {
     console.log(this.user)
   }
 
+  private isLogged: boolean = false
+
   private prueba: string = ""
 
   public user: string = ""
@@ -24,5 +25,9 @@ export class AppComponent implements OnChanges {
   public changepropierties(ul: HTMLUListElement): void {
     this.prueba = "ASDAS"
     console.log(this.prueba)
+  }
+
+  public logout(): void {
+    this.isLogged = false
   }
 }
