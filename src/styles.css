@@ -7,4 +7,12 @@
     margin: 0px;
 }
 
+@font-face {
+    font-family: 'RubikR';
+    src: url('./assets/fonts/Rubik/Rubik-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'RubikR';
+}
 /* You can add global styles to this file, and also import other style files */
