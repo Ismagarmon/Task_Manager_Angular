@@ -1,0 +1,131 @@
+.flex-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.flex-v {
+    display: flex;
+    align-items: center;
+}
+
+.flex-cc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctn {
+    width: 100%;
+    height: 4rem;
+    background-color: #CECECE;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .menu {
+        width: 100%;
+        height: 4rem;
+        color: white;
+        background-color: black;
+        font-family: 'RubikR';
+    }
+
+    #home {
+        cursor: pointer;
+    }
+
+    #menu {
+        position: relative;
+        list-style: none;
+        width: 100%;
+        height: 4rem;
+    }
+
+    #menu li {
+        width: 9rem;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    #menu li:first-child {
+        position: absolute;
+        left: 1rem;
+        cursor: default;
+    }
+
+    #menu li:first-child i {
+        cursor: pointer;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    #menu li:nth-child(2) {
+        cursor: default;
+    }
+
+    #menu li:nth-child(3),
+    #menu li:nth-child(4),
+    #menu li:nth-child(5),
+    #menu li:nth-child(6),
+    #menu li:nth-child(7){
+        transition: all 0.3s;
+        border-radius: 5px;
+        margin-left: 1rem;
+    }
+
+    #menu li:nth-child(3) p,
+    #menu li:nth-child(4) p,
+    #menu li:nth-child(5) p,
+    #menu li:nth-child(6) p,
+    #menu li:nth-child(7) p{
+        margin-left: 10%;
+        display: inline-block;
+    }
+
+    #menu li:nth-child(3) i,
+    #menu li:nth-child(4) i,
+    #menu li:nth-child(5) i,
+    #menu li:nth-child(6) i,
+    #menu li:nth-child(7) i{
+        margin-left: 10%;
+    }
+
+    #menu li:nth-child(3):hover,
+    #menu li:nth-child(4):hover,
+    #menu li:nth-child(5):hover,
+    #menu li:nth-child(6):hover,
+    #menu li:nth-child(7):hover{
+        background-color: gray;
+    }
+
+    #menu li:last-child {
+        position: absolute;
+        right: 0.4rem;
+    }
+
+    #menu li:last-child p {
+        margin-left: 25%;
+    }
+
+
+}

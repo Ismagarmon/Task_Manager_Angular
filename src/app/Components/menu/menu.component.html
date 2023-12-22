@@ -1,0 +1,40 @@
+<div class="ctn">
+    <div class="menu">
+        @if (isLogged) {
+
+        }
+        @else {
+            <ul id="menu" #menu class="flex-cc">
+                <li class="flex-cc">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" id="home" (click)="changepropierties(menu)">
+                        <path fill="white" d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1 1 1 0 0 0-.26-.68z"/>
+                    </svg>
+                </li>
+                <li class="flex-cc">
+                    <p>Welcome user: {{user}}</p>
+                </li>
+                <li class="flex-v" routerLink="/dashboard">
+                    <i class='bx bxs-dashboard' style='color:#ffffff' ></i>
+                    <p>DashBoard</p>
+                </li>
+                <li class="flex-v" routerLink="/message">
+                    <i class='bx bxs-chat' style='color:#ffffff' ></i>
+                    <p>Message</p>
+                </li>
+                <li class="flex-v" routerLink="/tasks">
+                    <i class='bx bxs-home-alt-2' style='color:#ffffff' ></i>
+                    <p>Tasks</p>
+                </li>
+                <li class="flex-v" routerLink="/profile">
+                    <i class='bx bxs-user' style='color:#ffffff' ></i>
+                    <p>Profile</p>
+                </li>
+                <li class="flex-v" (click)="logout()">
+                    <i class='bx bx-log-out' style='color:#ffffff' ></i>
+                    <p>Logout</p>
+                </li>
+            </ul>
+        }
+
+    </div>
+</div>
