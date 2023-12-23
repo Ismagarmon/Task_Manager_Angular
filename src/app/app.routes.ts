@@ -17,6 +17,6 @@ export const routes: Routes = [
     { path: 'signin', component: SigninComponent},
     { path: 'signup', component: SignupComponent},
 
-    { path: '', redirectTo: '/profile', pathMatch: 'full'}, //De momento esto está ok, pero hay que cambiarlo
+    { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: '**', component: PagenotfoundComponent}
 ];

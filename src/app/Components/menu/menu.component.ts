@@ -24,7 +24,7 @@ export class MenuComponent implements OnChanges, OnInit {
 
   private prueba: string = ""
 
-  public user: string = ""
+  public user: string = "Ismael"
 
   public changepropierties(ul: HTMLUListElement): void {
     this.prueba = "ASDAS"
