@@ -20,7 +20,7 @@ export class MenuComponent implements OnChanges, OnInit {
     console.log(this.user)
   }
 
-  public isLogged: boolean = false
+  public isLogged: boolean = true
 
   private prueba: string = ""
 

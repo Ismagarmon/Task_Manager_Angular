@@ -50,6 +50,28 @@
         font-family: 'RubikR';
     }
 
+    .signin {
+        position: absolute;
+        right: 5rem;
+        width: 9rem;
+        height: 3rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .signin p {
+        margin-left: 10%;
+        display: inline-block;
+    }
+
+    .signin i {
+        margin-left: 10%;
+    }
+
+    .signin:hover {
+        background-color: gray;
+    }
+
     #home {
         cursor: pointer;
     }
@@ -87,8 +109,7 @@
     #menu li:nth-child(3),
     #menu li:nth-child(4),
     #menu li:nth-child(5),
-    #menu li:nth-child(6),
-    #menu li:nth-child(7) {
+    #menu li:nth-child(6) {
         transition: all 0.3s;
         border-radius: 5px;
         margin-left: 1rem;
@@ -97,8 +118,7 @@
     #menu li:nth-child(3) p,
     #menu li:nth-child(4) p,
     #menu li:nth-child(5) p,
-    #menu li:nth-child(6) p,
-    #menu li:nth-child(7) p {
+    #menu li:nth-child(6) p {
         margin-left: 10%;
         display: inline-block;
     }
@@ -106,16 +126,14 @@
     #menu li:nth-child(3) i,
     #menu li:nth-child(4) i,
     #menu li:nth-child(5) i,
-    #menu li:nth-child(6) i,
-    #menu li:nth-child(7) i {
+    #menu li:nth-child(6) i {
         margin-left: 10%;
     }
 
     #menu li:nth-child(3):hover,
     #menu li:nth-child(4):hover,
     #menu li:nth-child(5):hover,
-    #menu li:nth-child(6):hover,
-    #menu li:nth-child(7):hover {
+    #menu li:nth-child(6):hover {
         background-color: gray;
     }
 
@@ -128,24 +146,5 @@
         margin-left: 25%;
     }
 
-    #signin {
-        position: absolute;
-        right: 5rem;
-        width: 9rem;
-        height: 3rem;
-        cursor: pointer;
-    }
-
-    #signin p {
-        margin-left: 10%;
-        display: inline-block;
-    }
-
-    #signin i {
-        margin-left: 10%;
-    }
-
-    #signin:hover {
-        background-color: gray;
-    }
+    
 }
