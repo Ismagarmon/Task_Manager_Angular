@@ -1,13 +1,9 @@
 @if (isLogged) {
-
-}
-@else {
 <div class="ctn">
     <div class="menu">
         <ul id="menu" #menu class="flex-cc">
             <li class="flex-cc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" id="home"
-                    (click)="changepropierties(menu)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" id="home">
                     <path fill="white"
                         d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1 1 1 0 0 0-.26-.68z" />
                 </svg>
@@ -19,13 +15,13 @@
                 <i class='bx bxs-dashboard' style='color:#ffffff'></i>
                 <p>DashBoard</p>
             </li>
-            <li class="flex-v" routerLink="/message">
+            <li class="flex-v" routerLink="/cardgame">
                 <i class='bx bxs-chat' style='color:#ffffff'></i>
-                <p>Message</p>
+                <p>CardGame</p>
             </li>
-            <li class="flex-v" routerLink="/tasks">
+            <li class="flex-v" routerLink="/musicplayer">
                 <i class='bx bxs-home-alt-2' style='color:#ffffff'></i>
-                <p>Tasks</p>
+                <p>MusicPlayer</p>
             </li>
             <li class="flex-v" routerLink="/profile">
                 <i class='bx bxs-user' style='color:#ffffff'></i>
@@ -34,6 +30,28 @@
             <li class="flex-v" (click)="logout()">
                 <i class='bx bx-log-out' style='color:#ffffff'></i>
                 <p>Logout</p>
+            </li>
+        </ul>
+    </div>
+</div>
+}
+@else {
+<div class="ctn">
+    <div class="menu">
+        <ul id="menu" #menu class="flex-cc">
+            <li class="flex-cc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" id="home">
+                    <path fill="white"
+                        d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1 1 1 0 0 0-.26-.68z" />
+                </svg>
+            </li>
+            <li class="flex-v" routerLink="/signin" id="signin">
+                <i class='bx bxs-user' style='color:#ffffff'></i>
+                <p>Sign In</p>
+            </li>
+            <li class="flex-v" routerLink="/signup">
+                <i class='bx bx-log-out' style='color:#ffffff'></i>
+                <p>Sign Up</p>
             </li>
         </ul>
     </div>

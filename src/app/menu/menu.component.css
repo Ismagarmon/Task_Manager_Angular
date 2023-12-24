@@ -128,5 +128,24 @@
         margin-left: 25%;
     }
 
+    #signin {
+        position: absolute;
+        right: 5rem;
+        width: 9rem;
+        height: 3rem;
+        cursor: pointer;
+    }
 
+    #signin p {
+        margin-left: 10%;
+        display: inline-block;
+    }
+
+    #signin i {
+        margin-left: 10%;
+    }
+
+    #signin:hover {
+        background-color: gray;
+    }
 }

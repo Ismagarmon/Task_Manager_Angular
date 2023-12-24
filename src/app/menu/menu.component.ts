@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 export class MenuComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
-    let jsonls = localStorage.getItem("User")
+    let jsonls: Object | null = localStorage.getItem("User")
     this.user
   }
 
@@ -26,10 +26,10 @@ export class MenuComponent implements OnChanges, OnInit {
 
   public user: string = "Ismael"
 
-  public changepropierties(ul: HTMLUListElement): void {
+  /* public changepropierties(ul: HTMLUListElement): void {
     this.prueba = "ASDAS"
     console.log(this.prueba)
-  }
+  } */
 
   public logout(): void {
     this.isLogged = false

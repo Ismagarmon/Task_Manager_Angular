@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-message',
+  selector: 'app-musicplayer',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './message.component.html',
-  styleUrl: './message.component.css'
+  templateUrl: './musicplayer.component.html',
+  styleUrl: './musicplayer.component.css'
 })
-export class MessageComponent {
+export class MusicplayerComponent {
 
 }
