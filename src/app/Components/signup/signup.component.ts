@@ -18,30 +18,21 @@ export class SignupComponent {
     this.valor = input.value
   }
 
-  public listanombres: String[] = []
-
-  nombres = new FormControl()
-
-  constructor() {
-    this.listanombres = []
-    
-  }
-
   public formularioRegistro = new FormGroup({
     nombre: new FormControl(''),
     apellidos: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl('')
+    /* base: new FormControl('hexadecimal'),
+    potencia: new FormControl('3'),
+    largo: new FormControl(true) */
   })
 
   public borrarTodas() {
     localStorage.clear();
-    this.listanombres = [];
   }
-
+  
   public insertarn(): void {
-    this.listanombres.push(this.nombres.value)
-    this.nombres.setValue('')
-    localStorage.setItem('nombres', JSON.stringify(this.listanombres))
+
   }
 }
