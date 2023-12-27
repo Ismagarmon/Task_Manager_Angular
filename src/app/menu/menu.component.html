@@ -11,15 +11,15 @@
             <li class="flex-cc">
                 <p>Welcome user: {{user}}</p>
             </li>
-            <li class="flex-v" routerLink="/cardgame">
+            <li class="flex-v" routerLink="/cardgame" routerLinkActive="active">
                 <i class='bx bxs-credit-card-front' style='color:#ffffff'></i>
                 <p>CardGame</p>
             </li>
-            <li class="flex-v" routerLink="/musicplayer">
+            <li class="flex-v" routerLink="/musicplayer" routerLinkActive="active">
                 <i class='bx bxs-music' style='color:#ffffff'></i>
                 <p>MusicPlayer</p>
             </li>
-            <li class="flex-v" routerLink="/profile">
+            <li class="flex-v" routerLink="/profile" routerLinkActive="active">
                 <i class='bx bxs-user' style='color:#ffffff'></i>
                 <p>Profile</p>
             </li>
@@ -33,19 +33,19 @@
 }
 @else {
 <div class="ctn">
-    <div class="menu">
-        <ul id="menu" #menu class="flex-cc">
-            <li class="flex-cc">
+    <div class="menu2">
+        <ul id="menu2" #menu class="flex-cc">
+            <li class="flex-cc" routerLink="/home">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" id="home">
                     <path fill="white"
                         d="M12.74 2.32a1 1 0 0 0-1.48 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1 1 1 0 0 0-.26-.68z" />
                 </svg>
             </li>
-            <li class="flex-v signin" routerLink="/signin">
+            <li class="flex-v" routerLink="/signin" routerLinkActive="active">
                 <i class='bx bxs-user' style='color:#ffffff'></i>
                 <p>Sign In</p>
             </li>
-            <li class="flex-v" routerLink="/signup">
+            <li class="flex-v" routerLink="/signup" routerLinkActive="active">
                 <i class='bx bx-log-out' style='color:#ffffff'></i>
                 <p>Sign Up</p>
             </li>

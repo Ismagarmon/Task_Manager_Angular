@@ -1,11 +1,11 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -20,7 +20,7 @@ export class MenuComponent implements OnChanges, OnInit {
     console.log(this.user)
   }
 
-  public isLogged: boolean = true
+  public isLogged: boolean = false
 
   private prueba: string = ""
 

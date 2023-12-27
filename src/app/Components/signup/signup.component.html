@@ -1,1 +1,15 @@
-<p>signup works!</p>
+<form [formGroup]="formularioRegistro" (ngSubmit)="insertarn()">
+    <input type="text" placeholder="Escribir el nombre" formControlName="nombre">
+    <input type="text" placeholder="Nombres" [formControl]="nombres">
+    <input type="text" placeholder="Escribir los apellidos" formControlName="apellidos">
+    <input type="text" placeholder="Escribir un email" formControlName="email">
+    <input type="password" placeholder="Escribir una contraseña" formControlName="password">
+
+    <input type="range" step="0.25" min="0" max="100" #range (input)="getValor(range)" id="volume">
+
+    <p>{{valor}}</p>
+
+    <input type="submit" value="Enviar">
+    <input type="submit" value="Agregar">
+
+</form>

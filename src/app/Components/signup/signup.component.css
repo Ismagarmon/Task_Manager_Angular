@@ -1,0 +1,44 @@
+#volume {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+}
+
+#volume:hover {
+    opacity: 1;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #a4f3eb;
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.26);
+    background: #75b4c3;
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#volume::-moz-range-thumb {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #a4f3eb;
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.26);
+    background: #75b4c3;
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
