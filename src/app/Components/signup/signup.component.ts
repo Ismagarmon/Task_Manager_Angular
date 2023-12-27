@@ -35,4 +35,16 @@ export class SignupComponent {
   public insertarn(): void {
 
   }
+
+  public changevalue(span: HTMLSpanElement, input: HTMLInputElement): void {
+    let value: string = input.value
+    let valuenumber: number = parseInt(value)
+    span.textContent = value
+    span.classList.add('show')
+    console.log(valuenumber)
+  }
+
+  public mouseup(span: HTMLSpanElement): void {
+    span.classList.remove('show')
+  }
 }

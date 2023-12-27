@@ -1,3 +1,7 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; <-- Esto es tailwind */ 
+
 *,
 *::before,
 *::after {
