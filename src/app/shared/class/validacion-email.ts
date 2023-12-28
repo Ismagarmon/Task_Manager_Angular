@@ -12,6 +12,6 @@ export class ValidacionEmail {
         if (regexcorreo.test(email) || regexcorreo1.test(email) || regexcorreo2.test(email))
             return { regexemail: true }
         else
-            return null
+            return { regexemail: false }
     }
 }

@@ -10,6 +10,6 @@ export class ValidacionPassword {
         if (regexpassword.test(password))
             return { regexpassword: true }
         else
-            return null
+            return { regexpassword: false }
     }
 }
