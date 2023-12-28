@@ -1,9 +1,35 @@
 <form [formGroup]="formularioRegistro" (ngSubmit)="insertarn()">
     <input type="text" placeholder="Escribir el nombre" formControlName="nombre">
-    <input type="text" placeholder="Escribir los apellidos" formControlName="apellidos">
-    <input type="text" placeholder="Escribir un email" formControlName="email">
-    <input type="password" placeholder="Escribir una contraseña" formControlName="password">
+    @if(this.formularioRegistro.get('nombre')?.errors?.['required']) {
+    <span>(El nombre no puede quedar vacío)</span>
+    }
+    @if(this.formularioRegistro.get('nombre')?.errors?.['minlength']) {
+    <span>(Debe tener como mínimo 4 caracteres)</span>
+    }
 
+    <input type="text" placeholder="Escribir los apellidos" formControlName="apellidos">
+    @if(this.formularioRegistro.get('apellidos')?.errors?.['required']) {
+    <span>(Los apellidos no pueden quedar vacío)</span>
+    }
+    @if(this.formularioRegistro.get('apellidos')?.errors?.['minlength']) {
+    <span>(Debe tener como mínimo 4 caracteres)</span>
+    }
+
+    <input type="text" placeholder="Escribir un email" formControlName="email">
+    @if(this.formularioRegistro.get('email')?.errors?.['regexemail']) {
+    <span>(Tiene que ser un correo valido)</span>
+    }
+    @if(this.formularioRegistro.get('email')?.errors?.['required']) {
+    <span>(El email no pueden quedar vacío)</span>
+    }
+
+    <input type="password" placeholder="Escribir una contraseña" formControlName="password">
+    @if(this.formularioRegistro.get('password')?.errors?.['regexpassword']) {
+    <span>(Tiene que ser una contraseña válida)</span>
+    }
+    @if(this.formularioRegistro.get('password')?.errors?.['required']) {
+    <span>(La contraseña no pueden quedar vacío)</span>
+    }
     <!-- <input type="range" step="0.1" min="0" max="100" #range (input)="getValor(range)" id="volume">
     <p>{{valor}}</p> -->
 
@@ -14,14 +40,15 @@
             </div>
             <div class="field">
                 <div class="value left">0</div>
-                <input type="range" min="0" max="100" value="50" step="1" (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
+                <input type="range" min="0" max="100" value="50" step="0.5"
+                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
                 <div class="value right">100</div>
             </div>
         </div>
     </div>
-    
 
-    
+
+
 
     <!-- <p><input type="checkbox" formControlName="largo">Mostrar cantidad de dígitos
     </p>
@@ -39,7 +66,7 @@
         <input type="radio" formControlName="base" value="hexadecimal">Hexadecimal
     </p>     Preguntar de como usar los forms anidados -->
 
-    <!-- <input type="submit" value="Enviar" (click)="borrarTodas()">
-    <input type="submit" value="Insertar"> -->
+    <!-- <input type="submit" value="Enviar" (click)="borrarTodas()"> -->
+    <input type="submit" value="Insertar" [disabled]="formularioRegistro.invalid">
 
 </form>

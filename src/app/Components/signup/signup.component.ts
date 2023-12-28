@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
-import { ReactiveFormsModule, FormControl, FormGroup, Validators  } from '@angular/forms'
+import { ReactiveFormsModule, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { ValidacionEmail } from '../../shared/class/validacion-email';
+import { ValidacionPassword } from '../../shared/class/validacion-password';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule ],
+  imports: [ CommonModule, ReactiveFormsModule ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -14,15 +15,22 @@ export class SignupComponent {
 
   public valor: String = ""
 
+  constructor(private fb: FormBuilder) {
+
+  }
+
   public getValor(input: HTMLInputElement): void {
     this.valor = input.value
   }
 
-  public formularioRegistro = new FormGroup({
-    nombre: new FormControl(''),
-    apellidos: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl('')
+  public formularioRegistro = this.fb.group({
+    nombre: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    apellidos: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, ValidacionEmail.regexemail]),
+    /* visible: new FormGroup({
+      
+    }),*/
+    password: new FormControl('', [Validators.required, ValidacionPassword.regexpassword])
     /* base: new FormControl('hexadecimal'),
     potencia: new FormControl('3'),
     largo: new FormControl(true) */
@@ -31,15 +39,20 @@ export class SignupComponent {
   public borrarTodas() {
     localStorage.clear();
   }
-  
-  public insertarn(): void {
 
+  public insertarn(): void {
+    if (this.formularioRegistro.valid){
+      alert('El formulario es correcto')
+    }
+    else {
+      alert('El formulario no es correcto')
+    }
   }
 
   public changevalue(span: HTMLSpanElement, input: HTMLInputElement): void {
     let value: string = input.value
-    let valuenumber: number = parseInt(value)
-    span.textContent = value
+    let valuenumber: string = Math.floor(parseInt(value)).toString()
+    span.textContent = valuenumber
     span.classList.add('show')
     console.log(valuenumber)
   }
