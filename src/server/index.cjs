@@ -18,7 +18,7 @@ const PORT = process.env.PORT ?? '9000'
 
 
 //Middleware
-
+app.use(express.json())
 app.use('/api', userRoutes ) //Para ir a las rutas de nuestra API, siempre tenemos que poner "/api" en el navegador
 
 
