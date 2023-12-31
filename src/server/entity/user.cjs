@@ -20,6 +20,16 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         require: true
+    },
+    puntuacion: {
+        type: Number,
+        require: false,
+        default: 0
+    },
+    img: {
+        type: String,
+        require: false,
+        default: ""
     }
 })
 

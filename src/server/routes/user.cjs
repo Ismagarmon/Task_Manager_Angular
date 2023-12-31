@@ -6,20 +6,17 @@ const US = require('../entity/user.cjs')
 
 //Crear usuario
 
-router.post('/users', (req, res) => {
+router.post('/users', async (req, res) => {
     try {
-        const user = US(req.body)
-        user
-        .save()
-        .then((data) => res.json(data))
-        .catch(error => res.json({message: error}))
-    
-        res.send('Usuario creado')
-        res.end()
+        const user = new US(req.body)
+        const createuser = await user.save()
+
+        res.send('Se ha creado correctamente el usuario.')
     } catch (error) {
-        res.send(error)
+        res.status(500).send('No se ha podido crear el usuario.')
+        res.end()
     }
-    
+
 })
 
 
