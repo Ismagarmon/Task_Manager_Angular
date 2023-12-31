@@ -7,13 +7,19 @@ const US = require('../entity/user.cjs')
 //Crear usuario
 
 router.post('/users', (req, res) => {
-    const user = US(req.body)
-    user
-    .save()
-    .then((data) => res.json(data))
-    .catch(error => res.json({message: error}))
+    try {
+        const user = US(req.body)
+        user
+        .save()
+        .then((data) => res.json(data))
+        .catch(error => res.json({message: error}))
     
-    res.send('Usuario creado')
+        res.send('Usuario creado')
+        res.end()
+    } catch (error) {
+        res.send(error)
+    }
+    
 })
 
 
