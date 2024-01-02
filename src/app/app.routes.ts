@@ -17,7 +17,7 @@ export const routes: Routes = [
         path: 'juegos', component: JuegosComponent, 
         children:
             [
-                { path: 'musicplayer', component: MusicplayerComponent },
+                { path: 'musicplayer/:cantante', component: MusicplayerComponent },
                 { path: 'cardgame', component: CardgameComponent }
             ]
     },

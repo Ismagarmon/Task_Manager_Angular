@@ -12,4 +12,8 @@ import { RouterOutlet, RouterLink } from '@angular/router'
 })
 export class JuegosComponent {
 
+  public change(ul: HTMLUListElement): void {
+    ul.style.display = 'none'
+  }
+
 }

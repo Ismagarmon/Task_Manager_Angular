@@ -13,6 +13,8 @@ export class LoginService {
     return this.http.get<any>('')
   }
 
-  
+  public register(nombre: string, apellidos: string, email: string, password: string): void {
+    
+  }
 
 }

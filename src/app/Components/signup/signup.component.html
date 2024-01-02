@@ -16,11 +16,13 @@
     }
 
     <input type="text" placeholder="Escribir un email" formControlName="email">
-    @if(this.formularioRegistro.get('email')?.errors?.['regexemail']) {
-    <span>(Tiene que ser un correo valido)</span>
-    }
+
     @if(this.formularioRegistro.get('email')?.errors?.['required']) {
     <span>(El email no pueden quedar vacío)</span>
+    }
+    
+    @if(this.formularioRegistro.get('email')?.errors?.['regexemail']) {
+    <span>(Tiene que ser un correo valido)</span>
     }
 
     <input type="password" placeholder="Escribir una contraseña" formControlName="password">
@@ -33,19 +35,7 @@
     <!-- <input type="range" step="0.1" min="0" max="100" #range (input)="getValor(range)" id="volume">
     <p>{{valor}}</p> -->
 
-    <div class="volume">
-        <div class="range">
-            <div class="sliderValue">
-                <span #valuespan>50</span>
-            </div>
-            <div class="field">
-                <div class="value left">0</div>
-                <input type="range" min="0" max="100" value="50" step="0.5"
-                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
-                <div class="value right">100</div>
-            </div>
-        </div>
-    </div>
+
 
 
 
@@ -66,7 +56,6 @@
         <input type="radio" formControlName="base" value="hexadecimal">Hexadecimal
     </p>     Preguntar de como usar los forms anidados -->
 
-    <!-- <input type="submit" value="Enviar" (click)="borrarTodas()"> -->
-    <input type="submit" value="Insertar" [disabled]="formularioRegistro.invalid">
+    <button type="submit">Insertar</button>
 
 </form>

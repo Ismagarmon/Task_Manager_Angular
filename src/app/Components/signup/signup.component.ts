@@ -49,15 +49,5 @@ export class SignupComponent {
     }
   }
 
-  public changevalue(span: HTMLSpanElement, input: HTMLInputElement): void {
-    let value: string = input.value
-    let valuenumber: string = Math.floor(parseInt(value)).toString()
-    span.textContent = valuenumber
-    span.classList.add('show')
-    console.log(valuenumber)
-  }
-
-  public mouseup(span: HTMLSpanElement): void {
-    span.classList.remove('show')
-  }
+  
 }

@@ -1,11 +1,9 @@
-<p>juegos works!</p>
-
-<ul>
-    <li class="flex-v" routerLink="/juegos/cardgame" routerLinkActive="active">
+<ul class="menu flex" #menus>
+    <li [ngClass]="'flex-v'" routerLink="/juegos/cardgame" routerLinkActive="active" class="CD" (click)="change(menus)">
         <i class='bx bxs-credit-card-front' style='color:#ffffff'></i>
         <p>CardGame</p>
     </li>
-    <li class="flex-v" routerLink="/juegos/musicplayer" routerLinkActive="active">
+    <li [ngClass]="'flex-v'" routerLink="/juegos/musicplayer" routerLinkActive="active" class="MP" (click)="change(menus)">
         <i class='bx bxs-music' style='color:#ffffff'></i>
         <p>MusicPlayer</p>
     </li>
