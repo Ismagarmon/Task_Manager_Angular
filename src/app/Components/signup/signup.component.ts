@@ -4,8 +4,6 @@ import { ReactiveFormsModule, FormControl, Validators, FormBuilder } from '@angu
 import { ValidacionEmail } from '../../shared/class/validacion-email';
 import { ValidacionPassword } from '../../shared/class/validacion-password';
 import { LoginService } from '../../shared/service/apirest.service';
-import { response } from 'express';
-import { User } from '../../shared/class/user';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +17,8 @@ export class SignupComponent {
   public valor: String = ""
 
   private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io/api/users"
+
+  private arrayUsers: any;
 
   constructor(private fb: FormBuilder, private c: LoginService) {
 
@@ -48,17 +48,22 @@ export class SignupComponent {
   public insertarn(nombre: string, apellidos: string, email: string, password: string): void {
 
     if (this.formularioRegistro.valid) {
+
+      this.c.login().subscribe( response => this.arrayUsers = response)
+
+      console.log(this.arrayUsers)
+
       alert('El formulario es correcto')
 
         this.c.register(this.URL, 
           {
-            "_id": 0,
+            "_id": 13,
             "nombre": nombre,
             "apellidos": apellidos,
             "email": email,
             "password": password
           }
-        ).subscribe({ next: () => { alert('Correcto') }, complete: () => { alert('correcto') }, error: () => { alert('error') } })
+        ).subscribe({ complete: () => { alert('Usuario registrado') } })
     }
     else {
       alert('El formulario no es correcto')
