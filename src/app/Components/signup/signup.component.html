@@ -46,9 +46,8 @@
 
 
 
-    <!-- <p><input type="checkbox" formControlName="largo">Mostrar cantidad de dígitos
-    </p>
-
+    <input type="checkbox" formControlName="largo">¿Quieres recibir notificaciones?
+    <!--
     <p>Elevar a:<br>
         <select formControlName="potencia">
             <option>2</option>
@@ -62,6 +61,6 @@
         <input type="radio" formControlName="base" value="hexadecimal">Hexadecimal
     </p>     Preguntar de como usar los forms anidados -->
 
-    <button type="submit">Registrarse</button>
+    <button type="submit" [disabled]="formularioRegistro.invalid">Registrarse</button>
 
 </form>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ValidacionesInputs } from '../../shared/class/validaciones-inputs';
 import { LoginService } from '../../shared/service/apirest.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent {
 
   private l_id: number = 0
 
-  constructor(private fb: FormBuilder, private c: LoginService) {
+  constructor(private fb: FormBuilder, private c: LoginService, private router:Router) {
 
   }
 
@@ -33,13 +34,10 @@ export class SignupComponent {
     nombre: new FormControl('', [Validators.required, Validators.minLength(4), ValidacionesInputs.onlywords]),
     apellidos: new FormControl('', [Validators.required, Validators.minLength(5), ValidacionesInputs.onlywords]),
     email: new FormControl('', [Validators.required, ValidacionesInputs.regexemail]),
-    /* visible: new FormGroup({
-      
-    }),*/
-    password: new FormControl('', [Validators.required, ValidacionesInputs.regexpassword])
+    password: new FormControl('', [Validators.required, ValidacionesInputs.regexpassword]),
     /* base: new FormControl('hexadecimal'),
-    potencia: new FormControl('3'),
-    largo: new FormControl(true) */
+    potencia: new FormControl('3'),*/
+    largo: new FormControl(true) 
   })
 
   public borrarTodas() {
@@ -57,16 +55,16 @@ export class SignupComponent {
       this.l_id++
 
       this.c.register(this.URL,
-        { "_id": 0, "nombre": nombre, "apellidos": apellidos, "email": email, "password": password }
+        { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password": password }
       ).subscribe({
 
-        complete: () => { alert('Usuario registrado') },
+        complete: () => { alert('Usuario registrado'); this.router.navigate(['signin']) },
 
         error: (error) => {
           if (error.status) {
-            alert('Error del servidor. Código de estado: ' + error.status);
+            alert('Error del servidor. Código de estado: ' + error.status + ', puede ser porque ya haya un correo como el tuyo');
           } else {
-            alert(error.toString());
+            alert(error);
           }
         }
       })

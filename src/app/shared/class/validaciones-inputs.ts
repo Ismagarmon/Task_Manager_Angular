@@ -29,7 +29,7 @@ export class ValidacionesInputs {
     static onlywords(control: AbstractControl): ValidationErrors | null {
         let name_sur: string = control.value
 
-        const regexstring = /^[a-zA-Z\s]+$/
+        const regexstring = /^[a-zA-Z\s]*$/
 
         if (regexstring.test(name_sur))
             return null
