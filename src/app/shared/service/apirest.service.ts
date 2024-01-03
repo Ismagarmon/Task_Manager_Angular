@@ -1,36 +1,47 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Usuario } from '../interface/usuario';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  
+
   constructor(private http: HttpClient) { }
 
-  public login(): Observable<any[]> {
-    return this.http.get<any[]>('https://arnem-dev-sqqc.1.us-1.fl0.io/api/users', {responseType: 'json'})
+
+  public login(): Observable<Usuario[]> {
+
+    return this.http.get<Usuario[]>('https://arnem-dev-sqqc.1.us-1.fl0.io/api/users', { responseType: 'json' })
   }
 
-  public register(URL:string, user: Object) {
+  public register(URL: string, user: any) {
 
-    return this.http.post(URL,user, {responseType: 'json'})
+    return this.http.post(URL, user, httpOptions )
   }
 
-  public findEmail(email: string): Observable<any> {
+  public findEmail(email: string): Observable<Usuario> {
 
-    return this.http.get<any>(`https://arnem-dev-sqqc.1.us-1.fl0.io/users/email/${email}`)
+    return this.http.get<Usuario>(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/email/${email}`)
   }
 
   public deleteUser(id: Number) {
 
-    return this.http.delete(`https://arnem-dev-sqqc.1.us-1.fl0.io/users/${id}`)
+    return this.http.delete(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/${id}`)
   }
 
-  public findId(id: Number): Observable<any> {
+  public findId(id: Number): Observable<Usuario> {
 
-    return this.http.get<any>(`https://arnem-dev-sqqc.1.us-1.fl0.io/users/${id}`)
+    return this.http.get<Usuario>(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/${id}`)
   }
 
 }
