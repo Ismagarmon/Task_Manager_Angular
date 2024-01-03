@@ -1,5 +1,5 @@
-<form [formGroup]="formularioRegistro" (ngSubmit)="insertarn()">
-    <input type="text" placeholder="Escribir el nombre" formControlName="nombre">
+<form [formGroup]="formularioRegistro" (ngSubmit)="insertarn(nombre.value, apellidos.value, email.value, password.value)">
+    <input type="text" placeholder="Escribir el nombre" formControlName="nombre" #nombre>
     @if(this.formularioRegistro.get('nombre')?.errors?.['required']) {
     <span>(El nombre no puede quedar vacío)</span>
     }
@@ -7,7 +7,7 @@
     <span>(Debe tener como mínimo 4 caracteres)</span>
     }
 
-    <input type="text" placeholder="Escribir los apellidos" formControlName="apellidos">
+    <input type="text" placeholder="Escribir los apellidos" formControlName="apellidos" #apellidos>
     @if(this.formularioRegistro.get('apellidos')?.errors?.['required']) {
     <span>(Los apellidos no pueden quedar vacío)</span>
     }
@@ -15,7 +15,7 @@
     <span>(Debe tener como mínimo 4 caracteres)</span>
     }
 
-    <input type="text" placeholder="Escribir un email" formControlName="email">
+    <input type="text" placeholder="Escribir un email" formControlName="email" #email>
 
     @if(this.formularioRegistro.get('email')?.errors?.['required']) {
     <span>(El email no pueden quedar vacío)</span>
@@ -25,7 +25,7 @@
     <span>(Tiene que ser un correo valido)</span>
     }
 
-    <input type="password" placeholder="Escribir una contraseña" formControlName="password">
+    <input type="password" placeholder="Escribir una contraseña" formControlName="password" #password>
     @if(this.formularioRegistro.get('password')?.errors?.['regexpassword']) {
     <span>(Tiene que ser una contraseña válida)</span>
     }

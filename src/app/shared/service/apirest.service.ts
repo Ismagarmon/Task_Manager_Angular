@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { response } from 'express';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,14 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) { }
 
   public login(email: string): Observable<any> {
-    return this.http.get<any>('')
+    return this.http.get<any>('https://arnem-dev-sqqc.1.us-1.fl0.io/api/users')
   }
 
-  public register(nombre: string, apellidos: string, email: string, password: string): void {
-    
+  public register(URL:string, user: Object) {
+
+    return this.http.post(URL,
+      user
+    )
   }
 
 }
