@@ -18,11 +18,9 @@ export class SignupComponent {
 
   private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io/api/users"
 
-  private arrayUsers: any
-
   private l_id: number = 0
 
-  constructor(private fb: FormBuilder, private c: LoginService, private router:Router) {
+  constructor(private fb: FormBuilder, private regsiter: LoginService, private router:Router) {
 
   }
 
@@ -50,11 +48,11 @@ export class SignupComponent {
 
       alert('El formulario es correcto')
 
-      this.c.login().subscribe(response => this.l_id = response[response.length - 1]._id)
+      this.regsiter.login().subscribe(response => this.l_id = response[response.length - 1]._id)
 
       this.l_id++
 
-      this.c.register(this.URL,
+      this.regsiter.register(this.URL,
         { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password": password }
       ).subscribe({
 
