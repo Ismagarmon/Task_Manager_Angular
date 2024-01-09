@@ -4,7 +4,7 @@ export interface Usuario {
     nombre: string,
     apellidos: string,
     email: string,
-    password: string,
+    password_nc: string,
     puntuacion: number,
     img: string    
 }
