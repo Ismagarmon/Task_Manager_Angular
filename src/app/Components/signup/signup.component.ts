@@ -53,7 +53,7 @@ export class SignupComponent {
       this.l_id++
 
       this.regsiter.register(this.URL,
-        { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password": password }
+        { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password_nc": password }
       ).subscribe({
 
         complete: () => { alert('Usuario registrado'); this.router.navigate(['signin']) },
