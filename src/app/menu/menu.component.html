@@ -11,7 +11,7 @@
             <li class="flex-cc">
                 <p>Welcome user: {{user}}</p>
             </li>
-            <li class="flex-v" routerLink="/juegos" routerLinkActive="active">
+            <li class="flex-v" routerLink="/juegos" routerLinkActive="active" #menuss (click)="change(menuss)">
                 <i class='bx bxs-user' style='color:#ffffff'></i>
                 <p>Juegos</p>
             </li>

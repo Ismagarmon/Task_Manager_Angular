@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +11,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class MenuComponent implements OnChanges, OnInit {
 
+  constructor(private router:Router){
+
+  }
+
   ngOnInit(): void {
     let jsonls: Object | null = localStorage.getItem("User")
     this.user
@@ -20,7 +24,7 @@ export class MenuComponent implements OnChanges, OnInit {
     console.log(this.user)
   }
 
-  public isLogged: boolean = false
+  public isLogged: boolean = true
 
   private prueba: string = ""
 
@@ -33,6 +37,11 @@ export class MenuComponent implements OnChanges, OnInit {
 
   public logout(): void {
     this.isLogged = false
+    this.router.navigate(['home'])
+  }
+
+  public change(ul: HTMLLIElement){
+    
   }
 
 }

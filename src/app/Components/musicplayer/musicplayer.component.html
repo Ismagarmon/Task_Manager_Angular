@@ -1,17 +1,19 @@
-<p>musicplayer works!</p>
-
-
-
-<div class="volume">
-    <div class="range">
-        <div class="sliderValue">
-            <span #valuespan>50</span>
-        </div>
-        <div class="field">
-            <div class="value left">0</div>
-            <input type="range" min="0" max="100" value="50" step="0.5"
-                (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
-            <div class="value right">100</div>
+@if(flag){
+    <div class="volume">
+        <div class="range">
+            <div class="sliderValue">
+                <span #valuespan>50</span>
+            </div>
+            <div class="field">
+                <div class="value left">0</div>
+                <input type="range" min="0" max="100" value="50" step="0.5"
+                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
+                <div class="value right">100</div>
+            </div>
         </div>
     </div>
-</div>
+}@else {
+    {{Nombres | json}}
+}
+
+

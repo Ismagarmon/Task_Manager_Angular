@@ -12,6 +12,13 @@ import { RouterOutlet, RouterLink } from '@angular/router'
 })
 export class JuegosComponent {
 
+  public hidden: Boolean = false
+
+  constructor(){
+    localStorage.setItem("componentes", JSON.stringify({ oculto: this.hidden }))
+
+  }
+
   public change(ul: HTMLUListElement): void {
     ul.style.display = 'none'
   }

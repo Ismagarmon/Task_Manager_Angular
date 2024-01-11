@@ -13,10 +13,37 @@ export class MusicplayerComponent {
 
   public nombrecantante: string = ""
 
+  public flag: Boolean = false
+
+  public Nombres: any = [
+    { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
+  ]
+
   constructor(private AR: ActivatedRoute) {
     this.AR.paramMap.subscribe((parametros: ParamMap) => {
       this.nombrecantante = parametros.get("cantante")!
     })
+    
+    if (this.nombrecantante != "Eminem" ) {
+      this.flag = false
+    }
+    else {
+      this.flag = true
+    }
+
+    if (this.nombrecantante != "Elton Jhon" ) {
+      this.flag = false
+    }
+    else {
+      this.flag = true
+    }
+
+    if (this.nombrecantante != "50 Cent" ) {
+      this.flag = false
+    }
+    else {
+      this.flag = true
+    }
   }
 
   public changevalue(span: HTMLSpanElement, input: HTMLInputElement): void {
