@@ -1,1 +1,22 @@
-<p>signin works!</p>
+<form [formGroup]="formularioLogIn"
+    (ngSubmit)="entrar(email.value, password.value)">
+
+    <input type="text" placeholder="Escribir un email" formControlName="email" #email>
+    @if(this.formularioLogIn.get('email')?.errors?.['required']) {
+    <span>(El email no pueden quedar vacío)</span>
+    }
+    @if(this.formularioLogIn.get('email')?.errors?.['regexemail']) {
+    <span>(Tiene que ser un correo valido)</span>
+    }
+
+    <input type="password" placeholder="Escribir una contraseña" formControlName="password" #password>
+    @if(this.formularioLogIn.get('password')?.errors?.['regexpassword']) {
+    <span>(Tiene que ser una contraseña válida)</span>
+    }
+    @if(this.formularioLogIn.get('password')?.errors?.['required']) {
+    <span>(La contraseña no pueden quedar vacío)</span>
+    }
+
+    <button type="submit" [disabled]="formularioLogIn.invalid">Registrarse</button>
+
+</form>
