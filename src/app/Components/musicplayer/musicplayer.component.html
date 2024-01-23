@@ -1,5 +1,26 @@
 @if(flag){
-    <div class="volume">
+
+    <div [ngClass]="'ctn grid'">
+        <div [ngClass]="'border menulat'"> 
+            <div class="menulatinside">
+
+            </div>
+            <div class="menulatinside2">
+                
+            </div>
+        </div>
+        <div [ngClass]="'border main'">
+            MAIN
+        </div>
+        <div [ngClass]="'border app'">
+            APP
+        </div>
+        
+    </div>
+
+
+
+    <!-- <div class="volume">
         <div class="range">
             <div class="sliderValue">
                 <span #valuespan>50</span>
@@ -11,7 +32,7 @@
                 <div class="value right">100</div>
             </div>
         </div>
-    </div>
+    </div> -->
 }@else {
     {{Nombres | json}}
 }

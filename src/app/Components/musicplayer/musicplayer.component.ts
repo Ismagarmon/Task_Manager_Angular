@@ -11,7 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router'
 })
 export class MusicplayerComponent {
 
-  public nombrecantante: string = ""
+  public nombrecantante: String = ""
 
   public flag: Boolean = false
 
@@ -23,27 +23,25 @@ export class MusicplayerComponent {
     this.AR.paramMap.subscribe((parametros: ParamMap) => {
       this.nombrecantante = parametros.get("cantante")!
     })
+
+    console.log(this.nombrecantante)
     
-    if (this.nombrecantante != "Eminem" ) {
-      this.flag = false
-    }
-    else {
+    if (this.nombrecantante === "Eminem" ) {
       this.flag = true
     }
 
-    if (this.nombrecantante != "Elton Jhon" ) {
-      this.flag = false
-    }
-    else {
+    if (this.nombrecantante === "Elton Jhon" ) {
       this.flag = true
     }
 
-    if (this.nombrecantante != "50 Cent" ) {
-      this.flag = false
-    }
-    else {
+    if (this.nombrecantante === "50 Cent" ) {
       this.flag = true
     }
+
+    if (this.nombrecantante === "NCS" ) {
+      this.flag = true
+    }
+
   }
 
   public changevalue(span: HTMLSpanElement, input: HTMLInputElement): void {

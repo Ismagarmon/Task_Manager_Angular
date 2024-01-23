@@ -14,14 +14,14 @@ const httpOptions = {
 })
 export class LoginService {
 
-  
+  private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io/api/users"
 
   constructor(private http: HttpClient) { }
 
 
   public login(): Observable<Usuario[]> {
 
-    return this.http.get<Usuario[]>('https://arnem-dev-sqqc.1.us-1.fl0.io/api/users', { responseType: 'json' })
+    return this.http.get<Usuario[]>(this.URL, { responseType: 'json' })
   }
 
   public register(URL: string, user: any) {
