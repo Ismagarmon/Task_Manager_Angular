@@ -26,11 +26,13 @@
 .main {
     grid-area: main;
     background-color: black;
+    color: white;
 }
 
 .app {
     grid-area: app;
     background-color: black;
+    color: white;
 }
 
 .menulatinside {
@@ -188,9 +190,52 @@
 
 .title {
     color: grey;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .title svg {
     margin-right: 0.8rem;
+}
+
+.listado {
+    width: 100%;
+    overflow-y: visible;
+    position: relative;
+    border-radius: 10px;
+}
+
+.listado .ctnlist {
+    margin-bottom: 0.5rem;
+    height:  calc(4rem + 2px);
+    cursor: pointer;
+    transition: all .3s;
+    border-radius: 10px;
+}
+
+.listado .ctnlist:hover {
+    background-color: rgb(75, 75, 75);
+}
+
+.listado p {
+    display: inline-block;
+}
+
+img {
+    width: 4rem;
+    height: calc(4rem + 2px);
+    border-radius: 10px;
+}
+
+.text {
+    display: inline-block;
+    width: 11rem;
+    height: 4rem;
+    color: white;
+    position: absolute;
+    left: 5rem;
+}
+
+.text p:first-child {
+    margin-top: 0.5rem;
+    margin-bottom: 0.7rem;
 }

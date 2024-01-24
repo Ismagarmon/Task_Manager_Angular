@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ActivatedRoute, ParamMap } from '@angular/router'
 import { LoginService } from '../../shared/service/apirest.service'
+import { List } from '../../shared/interface/list'
 
 @Component({
   selector: 'app-musicplayer',
@@ -15,6 +16,8 @@ export class MusicplayerComponent implements OnInit {
   public nombrecantante: String = ""
 
   public flag: Boolean = false
+
+  public lista: List[] = []
 
   public Nombres: any = [
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
@@ -59,9 +62,11 @@ export class MusicplayerComponent implements OnInit {
 
   ngOnInit(): void {
       this.getlist.getlist().subscribe(
-        (list) => {
-          console.log(list)
+        (list: List[]) => {
+          this.lista = list
         }
       )
+
+      
   }
 }

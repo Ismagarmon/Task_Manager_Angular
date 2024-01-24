@@ -52,7 +52,7 @@ export class SignupComponent {
 
       this.l_id++
 
-      this.regsiter.register(this.URL,
+      /* this.regsiter.register(this.URL,
         { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password_nc": password }
       ).subscribe({
         next: (data) => {
@@ -68,7 +68,7 @@ export class SignupComponent {
             alert(error);
           }
         }
-      })
+      })*/
     }
     else {
       alert('El formulario no es correcto')
