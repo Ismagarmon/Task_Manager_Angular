@@ -1,6 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ActivatedRoute, ParamMap } from '@angular/router'
+import { LoginService } from '../../shared/service/apirest.service'
 
 @Component({
   selector: 'app-musicplayer',
@@ -9,7 +10,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router'
   templateUrl: './musicplayer.component.html',
   styleUrl: './musicplayer.component.css'
 })
-export class MusicplayerComponent {
+export class MusicplayerComponent implements OnInit {
 
   public nombrecantante: String = ""
 
@@ -19,7 +20,7 @@ export class MusicplayerComponent {
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
   ]
 
-  constructor(private AR: ActivatedRoute) {
+  constructor(private AR: ActivatedRoute, private getlist: LoginService) {
     this.AR.paramMap.subscribe((parametros: ParamMap) => {
       this.nombrecantante = parametros.get("cantante")!
     })
@@ -54,5 +55,13 @@ export class MusicplayerComponent {
 
   public mouseup(span: HTMLSpanElement): void {
     span.classList.remove('show')
+  }
+
+  ngOnInit(): void {
+      this.getlist.getlist().subscribe(
+        (list) => {
+          console.log(list)
+        }
+      )
   }
 }

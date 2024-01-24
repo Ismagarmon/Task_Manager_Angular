@@ -5,6 +5,5 @@ export interface Usuario {
     apellidos: string,
     email: string,
     password_nc: string,
-    puntuacion: number,
-    img: string    
+    puntuacion: number   
 }
