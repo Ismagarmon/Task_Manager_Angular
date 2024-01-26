@@ -29,8 +29,7 @@ export class MenuComponent {
   }
 
   public toggleMenu(): void {
-    this.MS.toggleMenuSecundario()
-    console.log(this.MS.mostrarStateMS())
+    this.MS.mostrarMenuSecundario()
   }
 
 }

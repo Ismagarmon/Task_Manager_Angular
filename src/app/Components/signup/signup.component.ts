@@ -75,7 +75,7 @@ export class SignupComponent {
 
         error: (error) => {
           if (error.status) {
-            alert('Error del servidor. Código de estado: ' + error.status + ', puede ser porque ya haya un correo como el tuyo');
+            alert('Puede ser porque ya haya un correo como el tuyo');
           } else {
             alert(error);
           }

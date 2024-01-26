@@ -1,0 +1,15 @@
+<p style="margin-top: 20px; margin-bottom: 20px;">Tabla de puntuaciones</p>
+<table id="table">
+    <thead>
+        <th>Nombre</th>
+        <th>Puntuacion</th>
+    </thead>
+    <tbody>
+        @for (user of lista_usuario; track $index){
+            <tr>
+                <td>{{user.nombre}}</td>
+                <td>{{user.puntuacion}}</td>
+            </tr>
+        }
+    </tbody>
+</table>

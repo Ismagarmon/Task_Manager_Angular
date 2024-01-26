@@ -1,9 +1,14 @@
 <div [ngClass]="'ctn'">
+    <button (click)="changehidden(btn)" #btn id="btntabla"></button>
     <div [ngClass]="'grid abs'">
 
     </div>
     <div [ngClass]="'punt'">
-        <p style="margin-top: 20px; margin-bottom: 20px;">Tabla de puntuaciones</p>
-        <p>Nombre   |   Puntuación</p>
+        @defer (when hidden) {
+            <app-userpoints #applist></app-userpoints>
+            <p (mouseenter)="applist.cambiarcolortabla()" class="parr" >Cambiar borde de la tabla</p>
+          } @error {
+            <p>Problemas con el servidor</p>
+          }
     </div>
 </div>
