@@ -34,25 +34,33 @@
             </div>
             <div class="listado">
                 @for(item of lista; track $index) {
-                    <div class="ctnlist">
-                        <img src="{{item.img}}">
-                        <div class="text">
-                            @if (item.nombre === 'NCS') {
+                    @if(item.nombre === 'NCS') {
+                        <div class="ctnlist" style="height: calc(4rem - 2px);">
+                            <img src="{{item.img}}" style="height: 4rem;">
+                            <div class="text">
                                 <p style="display: block;">{{item.nombre}}</p>
                                 <p>{{item.PD}}</p>
-                            } @else {
+                            </div>
+                        </div>
+                    } @else {
+                        <div class="ctnlist">
+                            <img src="{{item.img}}">
+                            <div class="text">
                                 <p>{{item.nombre}}</p>
                                 <p>{{item.PD}}</p>
-                            }
+                            </div>
                         </div>
-                    </div>  
+                    }
                 }
             </div>
+
         </div>
     </div>
     <div [ngClass]="'border main'">
+        <app-musiclist></app-musiclist>
     </div>
     <div [ngClass]="'border app'">
+        <app-reproductor></app-reproductor>
     </div>
 
 </div>

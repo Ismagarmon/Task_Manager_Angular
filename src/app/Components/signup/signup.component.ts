@@ -1,9 +1,10 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ValidacionesInputs } from '../../shared/class/validaciones-inputs';
 import { LoginService } from '../../shared/service/apirest.service'
 import { Router } from '@angular/router';
+import { Usuario } from '../../shared/interface/usuario';
 
 @Component({
   selector: 'app-signup',
@@ -16,9 +17,9 @@ export class SignupComponent {
 
   public valor: String = ""
 
-  private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io/api/users"
+  private lista_usuario: Usuario[] = []
 
-  private l_id: number = 0
+  private id_u: number = 0
 
   constructor(private fb: FormBuilder, private regsiter: LoginService, private router:Router) {
 
@@ -48,15 +49,26 @@ export class SignupComponent {
 
       alert('El formulario es correcto')
 
-      this.regsiter.login().subscribe(response => this.l_id = response[response.length - 1]._id)
+      this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response; console.log(this.lista_usuario)})
 
-      this.l_id++
+      this.id_u = this.lista_usuario[this.lista_usuario.length - 1]._id
+      this.id_u++
 
-      /* this.regsiter.register(this.URL,
-        { "_id": this.l_id, "nombre": nombre, "apellidos": apellidos, "email": email, "password_nc": password }
+      const user: Usuario = {
+        _id: this.id_u,
+        apellidos: apellidos,
+        email: email,
+        nombre: nombre,
+        password_nc: password,
+        puntuacion: 0,
+        img: ''
+      }
+
+      this.regsiter.register(
+        user
       ).subscribe({
         next: (data) => {
-          alert(data)
+          alert(data.toString())
         },
 
         complete: () => { alert('Usuario registrado'); this.router.navigate(['signin']) },
@@ -68,12 +80,10 @@ export class SignupComponent {
             alert(error);
           }
         }
-      })*/
+      })
     }
     else {
       alert('El formulario no es correcto')
     }
   }
-
-
 }

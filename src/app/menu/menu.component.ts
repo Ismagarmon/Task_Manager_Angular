@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { MenusvisiService } from '../shared/service/menusvisi.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,24 +10,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent implements OnChanges, OnInit {
+export class MenuComponent {
 
-  constructor(private router:Router){
+  constructor(private router:Router, private MS: MenusvisiService, public state: MenusvisiService){
 
   }
-
-  ngOnInit(): void {
-    let jsonls: Object | null = localStorage.getItem("User")
-    this.user
-  }
-
-  ngOnChanges(): void {
-    console.log(this.user)
-  }
-
-  public isLogged: boolean = true
-
-  private prueba: string = ""
 
   public user: string = "Ismael"
 
@@ -36,12 +24,13 @@ export class MenuComponent implements OnChanges, OnInit {
   } */
 
   public logout(): void {
-    this.isLogged = false
+    this.MS.toggleMenuPrimario()
     this.router.navigate(['home'])
   }
 
-  public change(ul: HTMLLIElement){
-    
+  public toggleMenu(): void {
+    this.MS.toggleMenuSecundario()
+    console.log(this.MS.mostrarStateMS())
   }
 
 }

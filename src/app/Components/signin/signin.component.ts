@@ -4,6 +4,8 @@ import { Router } from '@angular/router'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ValidacionesInputs } from '../../shared/class/validaciones-inputs'
 import { LoginService } from '../../shared/service/apirest.service'
+import { SignInUser } from '../../shared/interface/sign-in-user'
+import { MenusvisiService } from '../../shared/service/menusvisi.service'
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +16,7 @@ import { LoginService } from '../../shared/service/apirest.service'
 })
 export class SigninComponent {
 
-  constructor(private router:Router,private fb: FormBuilder, private login: LoginService){
+  constructor(private router:Router,private fb: FormBuilder, private login: LoginService, public state: MenusvisiService){
 
   }
 
@@ -24,7 +26,23 @@ export class SigninComponent {
   })
 
   public entrar(email: string, password: string): void {
-    let email_value = email
-    let pw_value = password
+
+    const log: SignInUser = {
+      email: email,
+      password: password
+    }
+    this.login.SignIn(log).subscribe(
+      {
+        next: (data) => {
+          if(data.Message){
+            alert('Usuario correcto'); this.state.toggleMenuPrimario() ;this.router.navigate(['profile'])
+          }
+        },
+
+        error: (error) => {
+          alert('Contraseña o correo incorrecto')
+        }
+      }
+    )
   }
 }

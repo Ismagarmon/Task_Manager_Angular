@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common'
 import { ActivatedRoute, ParamMap } from '@angular/router'
 import { LoginService } from '../../shared/service/apirest.service'
 import { List } from '../../shared/interface/list'
+import { MusiclistComponent } from './musiclist/musiclist.component'
+import { ReproductorComponent } from './reproductor/reproductor.component'
 
 
 @Component({
   selector: 'app-musicplayer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MusiclistComponent, ReproductorComponent],
   templateUrl: './musicplayer.component.html',
   styleUrl: './musicplayer.component.css'
 })
