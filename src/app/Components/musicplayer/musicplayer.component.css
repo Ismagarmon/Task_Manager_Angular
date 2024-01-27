@@ -14,7 +14,6 @@
 }
 
 .border {
-    border: 1px solid green;
     padding: 0.5rem;
 }
 
@@ -27,6 +26,7 @@
     grid-area: main;
     background-color: black;
     color: white;
+    overflow-y: scroll;
 }
 
 .app {
