@@ -7,6 +7,9 @@
 .ctn {
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
+    background-color: #121212;
+    border-radius: 10px;
 }
 
 .header {
@@ -96,35 +99,35 @@ header {
     margin-top: 2rem;
 }
 
-.text p:first-child {
-    display: inline-block;
-    margin-bottom: 5px;
-}
-
-.text p:last-child {
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.text h2 {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-}
-
 .text {
     display: inline-block;
     width: 45rem;
     margin-left: 1rem;
     position: absolute;
     margin-top: 2rem;
+
+    & h2 {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    & p:last-child {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    & p:first-child {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
 }
 
 .nav2 {
     width: 100%;
     height: 5rem;
-    border: 1px solid white;
     display: flex;
     align-items: center;
+    margin-top: 1.5rem;
 }
 
 .plpa {
@@ -137,4 +140,19 @@ header {
     align-items: center;
     cursor: pointer;
     margin-left: 1rem;
+}
+
+main {
+    padding-top: 3rem;
+}
+
+table {
+    width: 97%;
+    min-height: 3rem;
+    overflow-y: visible;
+    margin: 0px auto;
+}
+
+thead th {
+    border-bottom: 1px solid white;
 }
