@@ -35,7 +35,7 @@
             <div class="listado">
                 @for(item of lista; track $index) {
                     @if(item.nombre === 'NCS') {
-                        <div class="ctnlist" style="height: calc(4rem - 2px);">
+                        <div class="ctnlist" style="height: calc(4rem - 2px);" (click)="cambiarnumero($index);cambiarnombre(item.nombre)">
                             <img src="{{item.img}}" style="height: 4rem;">
                             <div class="text">
                                 <p style="display: block;">{{item.nombre}}</p>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     } @else {
-                        <div class="ctnlist">
+                        <div class="ctnlist" (click)="cambiarnumero($index);cambiarnombre(item.nombre)">
                             <img src="{{item.img}}">
                             <div class="text">
                                 <p>{{item.nombre}}</p>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div [ngClass]="'border main'">
-        <app-musiclist></app-musiclist>
+        <app-musiclist src_img={{lista[number].img}} nombre={{name}}></app-musiclist> <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
     </div>
     <div [ngClass]="'border app'">
         <app-reproductor></app-reproductor>

@@ -9,7 +9,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="il">
+            <div class="il mright">
                 <div class="forward">
                     <svg width="19" height="19" viewBox="0 0 512 512">
                         <path fill="white"
@@ -17,7 +17,41 @@
                     </svg>
                 </div>
             </div>
-            
+            <div class="il">
+                <div class="user">
+                    <svg width="19" height="19" viewBox="0 0 512 512">
+                        <path fill="white"
+                            d="m448 362.7l-117.3-21.3C320 320 320 310.7 320 298.7c10.7-10.7 32-21.3 32-32c10.7-32 10.7-53.3 10.7-53.3c5.5-8 21.3-21.3 21.3-42.7s-21.3-42.7-21.3-53.3C362.7 32 319.2 0 256 0c-60.5 0-106.7 32-106.7 117.3c0 10.7-21.3 32-21.3 53.3s15.2 35.4 21.3 42.7c0 0 0 21.3 10.7 53.3c0 10.7 21.3 21.3 32 32c0 10.7 0 21.3-10.7 42.7L64 362.7C21.3 373.3 0 448 0 512h512c0-64-21.3-138.7-64-149.3" />
+                    </svg>
+                </div>
+            </div>
         </nav>
+        <header>
+            <div class="img">
+                <img alt="Logo" src={{src_img}}>
+                <div class="text">
+                    @if(nombre !== 'Mis lista de canciones') {
+                    <p>Lista de las canciones que me gustan de {{nombre}}</p>
+                    <h2>Canciones de {{nombre}}</h2>
+                    <p>{{email}} | {{cantsongs}} canciones</p>
+                    }
+                    @else {
+                    <p>Lista de las canciones que me gustan</p>
+                    <h2>Canciones que te gustan</h2>
+                    <p>{{email}} | {{cantsongs}} canciones</p>
+                    }
+
+                </div>
+            </div>
+        </header>
+
     </div>
+    <div class="nav2">
+        <div class="il plpa" id="playbtn" (click)="change()">
+           
+        </div>
+    </div>
+    <main>
+
+    </main>
 </div>

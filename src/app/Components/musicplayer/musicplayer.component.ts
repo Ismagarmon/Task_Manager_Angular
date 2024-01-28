@@ -22,9 +22,13 @@ export class MusicplayerComponent implements OnInit {
 
   public lista: List[] = []
 
+  public number: number = 0
+
   public Nombres: any = [
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
   ]
+
+  public name:string = ""
 
   constructor(private AR: ActivatedRoute, private getlist: LoginService) {
     this.AR.paramMap.subscribe((parametros: ParamMap) => {
@@ -68,8 +72,14 @@ export class MusicplayerComponent implements OnInit {
         (list: List[]) => {
           this.lista = list
         }
-      )
+      ) 
+  }
 
-      
+  public cambiarnumero(n: number): void {
+    this.number = n
+  }
+
+  public cambiarnombre(n: string): void {
+    this.name = n
   }
 }

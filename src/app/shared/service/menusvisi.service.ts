@@ -8,6 +8,15 @@ export class MenusvisiService {
 
   private EstadoMenuSecundario = new BehaviorSubject<boolean>(false)
   private EstadoMenuPrimario = new BehaviorSubject<boolean>(false)
+  private EstadoIsPlaying = new BehaviorSubject<boolean>(false)
+
+  toggleIsPlaying(): void {
+    this.EstadoIsPlaying.next(!this.EstadoIsPlaying.value)
+  }
+
+  showIsPlaying(): Boolean {
+    return this.EstadoIsPlaying.value
+  }
 
   mostrarMenuSecundario(): void {
     this.EstadoMenuSecundario.next(true)
