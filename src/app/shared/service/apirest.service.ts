@@ -5,6 +5,7 @@ import { Usuario } from '../interface/usuario';
 import { List } from '../interface/list';
 import { Message } from '../interface/message';
 import { SignInUser } from '../interface/sign-in-user';
+import { Listmusic } from '../interface/listmusic';
 
 
 
@@ -26,7 +27,6 @@ export class LoginService {
   }
 
   public register(user: Usuario) {
-
     return this.http.post(this.URL_LOCALHOST+'/api/users', user)
   }
 
@@ -53,5 +53,9 @@ export class LoginService {
 
   public SignIn(user: SignInUser): Observable<Message> {
     return this.http.post<Message>(this.URL_LOCALHOST+'/api/login', user )
+  }
+
+  public getMusicList(): Observable<Listmusic[]> {
+    return this.http.get<Listmusic[]>(this.URL_LOCALHOST+'/song/listncsmusic')
   }
 }

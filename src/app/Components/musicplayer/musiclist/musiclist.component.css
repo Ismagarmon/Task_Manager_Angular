@@ -151,8 +151,30 @@ table {
     min-height: 3rem;
     overflow-y: visible;
     margin: 0px auto;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 thead th {
     border-bottom: 1px solid white;
+    padding-bottom: 1rem;
+}
+
+tbody {
+    margin-top: 1rem;
+}
+
+tbody tr td:nth-child(2) {
+    width: 40%;
+}
+
+tbody tr {
+    border-radius: 1rem;
+    transition: all .3s;
+    height: 3rem;
+    cursor: pointer;
+}
+
+tbody tr:hover {
+    background-color: grey;
 }
