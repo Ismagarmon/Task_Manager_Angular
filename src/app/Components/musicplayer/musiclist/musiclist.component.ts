@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../../shared/service/apirest.service';
 import { Listmusic } from '../../../shared/interface/listmusic';
@@ -26,6 +26,14 @@ export class MusiclistComponent implements OnInit {
 
   public listmusictable: Listmusic[] = []
 
+  @Output() isVisiMAchange = new EventEmitter<Boolean>()
+
+  @Output() name = new EventEmitter<string>()
+
+  @Output() album = new EventEmitter<string>()
+
+  @Output() time = new EventEmitter<string>()
+
   constructor(private getlist: LoginService) {
 
   }
@@ -33,6 +41,7 @@ export class MusiclistComponent implements OnInit {
   ngOnInit(): void {
     this.getlist.getMusicList().subscribe((list: Listmusic[]) => {
       this.listmusictable = list
+      this.cantsongs = this.listmusictable.length
     })
     this.nombre = 'Mis lista de canciones'
     this.email = "ismagarmon3"
@@ -40,7 +49,7 @@ export class MusiclistComponent implements OnInit {
   }
 
   public change(): void {
-    this.isPlaying = !this.isPlaying
+    this.isPlaying = !this.isPlaying // Esto lo voy a hacer con una variable global
     if (this.isPlaying) {
       document.getElementById('playbtn')!.innerHTML = '<svg width="25" height="25" viewBox="0 0 1024 1024"><path d="m144.624 65.392l735.744 446.592l-736.736 446.624zm0-64a63.765 63.765 0 0 0-31.088 8.063c-20.32 11.28-32.912 32.705-32.912 55.937l-.992 893.216a63.958 63.958 0 0 0 32.912 55.936a63.937 63.937 0 0 0 31.088 8.065c11.712 0 23.472-3.216 33.775-9.664l736.72-446.624a63.94 63.94 0 0 0 30.257-54.336c0-22.112-11.44-42.672-30.257-54.352L178.4 11.025a64.084 64.084 0 0 0-33.775-9.632z"/></svg>'
     } else {
@@ -49,6 +58,8 @@ export class MusiclistComponent implements OnInit {
   }
 
   public changemusic(name: string, album: string, time: string){
-
+    this.name.emit(name)
+    this.album.emit(album)
+    this.time.emit(time)
   }
 }

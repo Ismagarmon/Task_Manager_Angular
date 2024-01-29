@@ -24,6 +24,10 @@ export class MusicplayerComponent implements OnInit {
 
   public number: number = 0
 
+  public isVisiML = false
+
+  public isVisiMA = false
+
   public Nombres: any = [
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
   ]
@@ -81,5 +85,13 @@ export class MusicplayerComponent implements OnInit {
 
   public cambiarnombre(n: string): void {
     this.name = n
+  }
+
+  public changemusiclist(): void {
+    this.isVisiML = !this.isVisiML
+  }
+
+  public getValueIsPlaying(isMAused: boolean): void {
+    this.isVisiMA = isMAused
   }
 }
