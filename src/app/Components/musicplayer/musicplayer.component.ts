@@ -26,7 +26,7 @@ export class MusicplayerComponent implements OnInit {
 
   public isVisiML = false
 
-  public isVisiMA = false
+  public isVisiMA: boolean = false
 
   public Nombres: any = [
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
