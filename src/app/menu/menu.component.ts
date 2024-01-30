@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MenusvisiService } from '../shared/service/menusvisi.service';
@@ -10,26 +10,32 @@ import { MenusvisiService } from '../shared/service/menusvisi.service';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent {
+export class MenuComponent implements OnChanges{
 
-  constructor(private router:Router, private MS: MenusvisiService, public state: MenusvisiService){
-
+  constructor(private router:Router, public state: MenusvisiService){
   }
 
-  public user: string = "Ismael"
+  public user: string = ""
 
-  /* public changepropierties(ul: HTMLUListElement): void {
-    this.prueba = "ASDAS"
-    console.log(this.prueba)
-  } */
+  private getUserName(): string {
+    const jsonstorage = sessionStorage.getItem('Usuario')
+    const user = JSON.parse(jsonstorage!)
+
+    return user.nombre
+  }
+
+  ngOnChanges(): void {
+    this.user = this.getUserName()
+  }
 
   public logout(): void {
-    this.MS.toggleMenuPrimario()
+    this.state.toggleMenuPrimario()
+    sessionStorage.clear()
     this.router.navigate(['home'])
   }
 
   public toggleMenu(): void {
-    this.MS.mostrarMenuSecundario()
+    this.state.mostrarMenuSecundario()
   }
 
 }

@@ -1,16 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MenusvisiService } from '../../../shared/service/menusvisi.service';
 
 @Component({
   selector: 'app-reproductor',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './reproductor.component.html',
-  styleUrl: './reproductor.component.css'
+  styleUrl: './reproductor.component.css',
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class ReproductorComponent implements OnInit {
+export class ReproductorComponent implements OnChanges {
 
-  @Input() public name: string = ""
+  @Input() public nombre: string = ""
 
   @Input() public album: string = ""
 
@@ -18,11 +20,22 @@ export class ReproductorComponent implements OnInit {
 
   @Input() public img_src: string = ""
 
-  public N_audio: any
+  public N_audio = new Audio()
 
-  ngOnInit(): void {
-    this.N_audio = new Audio()
-    this.N_audio.src = 'http://localhost:8092/song/name/Warriyo-Mortals (feat. Laura Brehm)_Future Trap'
+  constructor(public state: MenusvisiService) {
+  }
+
+  ngOnChanges(): void {
+    this.updateAudio()
+
+  }
+
+  private async updateAudio(): Promise<void> {
+    if(!this.N_audio.paused){
+      this.N_audio.pause()
+    }
+    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre
+    await this.N_audio.load()
     this.N_audio.play()
   }
 }

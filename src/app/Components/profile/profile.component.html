@@ -1,1 +1,40 @@
-<p>profile works!</p>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Puntuacion</th>
+        <th>Operaciones</th>
+    </thead>
+    <tbody>
+        @if (email === 'ismagarmon3@gmail.com'){
+        @for(user of lista_usuario; track $index){
+        <tr>
+
+                <td>
+                    <input value={{user._id}} readonly>
+                </td>
+                <td>
+                    <input value={{user.nombre}}>
+                </td>
+                <td>
+                    <input value={{user.apellidos}}>
+                </td>
+                <td>
+                    <input value={{user.email}}>
+                </td>
+                <td>
+                    <input value={{user.puntuacion}} readonly>
+                </td>
+                <td>
+                    <button id={{user._id}} (click)="eliminarusuario(btndelete.id)" #btndelete>Eliminar</button>
+                </td>
+
+        </tr>
+        }
+        } @else {
+        <p>Como no eres el adminstrador no puedes obtener la lista de todos los usuarios.</p>
+        }
+    </tbody>
+</table>

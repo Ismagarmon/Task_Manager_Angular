@@ -35,7 +35,7 @@
                 @for(item of lista; track $index) {
                     @if(item.nombre === 'NCS') {
                         <div class="ctnlist" style="height: calc(4rem - 2px);" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
-                            <img src="{{item.img}}" style="height: 4rem;">
+                            <img src="{{item.img}}" style="height: 4rem;" alt="Logo">
                             <div class="text">
                                 <p style="display: block;">{{item.nombre}}</p>
                                 <p>{{item.PD}}</p>
@@ -43,7 +43,7 @@
                         </div>
                     } @else {
                         <div class="ctnlist" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
-                            <img src="{{item.img}}">
+                            <img src="{{item.img}}" alt="Logo">
                             <div class="text">
                                 <p>{{item.nombre}}</p>
                                 <p>{{item.PD}}</p>
@@ -64,7 +64,7 @@
     </div>
     <div [ngClass]="'app'">
         @defer (when isVisiMA) {
-            <app-reproductor name={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} ></app-reproductor>
+            <app-reproductor nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} ></app-reproductor>
         } 
         @error {
             <p>Problemas con el servidor</p>

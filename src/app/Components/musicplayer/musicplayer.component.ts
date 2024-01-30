@@ -48,8 +48,6 @@ export class MusicplayerComponent implements OnInit {
     this.AR.paramMap.subscribe((parametros: ParamMap) => {
       this.nombrecantante = parametros.get("cantante")!
     })
-
-    console.log(this.nombrecantante)
     
     if (this.nombrecantante === "Eminem" ) {
       this.flag = true
@@ -74,7 +72,6 @@ export class MusicplayerComponent implements OnInit {
     let valuenumber: string = Math.floor(parseInt(value)).toString()
     span.textContent = valuenumber
     span.classList.add('show')
-    console.log(valuenumber)
   }
 
   public mouseup(span: HTMLSpanElement): void {

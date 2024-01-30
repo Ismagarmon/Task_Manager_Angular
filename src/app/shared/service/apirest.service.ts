@@ -30,18 +30,19 @@ export class LoginService {
     return this.http.post(this.URL_LOCALHOST+'/api/users', user)
   }
 
-  /*
+  
   public findEmail(email: string): Observable<Usuario> {
 
-    // return this.http.get<Usuario>(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/email/${email}`)
+    return this.http.get<Usuario>(this.URL_LOCALHOST + '/api/users/email/' + `${email}`)
   }
 
+  
   public deleteUser(id: number) {
 
-    // return this.http.delete(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/${id}`)
+    return this.http.delete(this.URL_LOCALHOST + '/api/users/' + `${id}`)
   }
 
-  public findId(id: number): Observable<Usuario> {
+  /* public findId(id: number): Observable<Usuario> {
 
     // return this.http.get<Usuario>(`https://arnem-dev-sqqc.1.us-1.fl0.io/api/users/${id}`)
   } */

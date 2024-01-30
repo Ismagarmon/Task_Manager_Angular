@@ -14,8 +14,12 @@ export class MenusvisiService {
     this.EstadoIsPlaying.next(!this.EstadoIsPlaying.value)
   }
 
-  showIsPlaying(): Boolean {
+  showIsPlaying(): boolean {
     return this.EstadoIsPlaying.value
+  }
+
+  StateIsPlaying$(): Observable<boolean> {
+    return this.EstadoIsPlaying.asObservable()
   }
 
   mostrarMenuSecundario(): void {

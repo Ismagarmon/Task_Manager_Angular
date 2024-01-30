@@ -31,16 +31,30 @@ export class SigninComponent {
       email: email,
       password: password
     }
+
     this.login.SignIn(log).subscribe(
       {
         next: (data) => {
           if(data.Message){
-            alert('Usuario correcto'); this.state.toggleMenuPrimario() ;this.router.navigate(['profile'])
+            alert('Usuario correcto'); 
+            this.state.toggleMenuPrimario() 
+            this.router.navigate(['profile'])
+            this.getUserToSesionStorage(email)
           }
         },
 
         error: (error) => {
           alert('Contraseña o correo incorrecto')
+        }
+      }
+    )
+  }
+
+  private getUserToSesionStorage(email: string ): void {
+    this.login.findEmail(email).subscribe(
+      {
+        next: (data) => {
+          sessionStorage.setItem('Usuario', JSON.stringify(data))
         }
       }
     )

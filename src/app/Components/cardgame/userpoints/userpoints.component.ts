@@ -14,10 +14,10 @@ export class UserpointsComponent implements OnInit {
 
   public lista_usuario: Usuario[] = []
 
-  constructor(private regsiter: LoginService) {}
+  constructor(private users: LoginService) {}
 
   ngOnInit(): void {
-    this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response; console.log(this.lista_usuario)})
+    this.users.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response})
   }
 
   public cambiarcolortabla(): void {
