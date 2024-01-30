@@ -34,7 +34,7 @@
             <div class="listado">
                 @for(item of lista; track $index) {
                     @if(item.nombre === 'NCS') {
-                        <div class="ctnlist" style="height: calc(4rem - 2px);" (click)="cambiarnumero($index);cambiarnombre(item.nombre)">
+                        <div class="ctnlist" style="height: calc(4rem - 2px);" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
                             <img src="{{item.img}}" style="height: 4rem;">
                             <div class="text">
                                 <p style="display: block;">{{item.nombre}}</p>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     } @else {
-                        <div class="ctnlist" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist()">
+                        <div class="ctnlist" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
                             <img src="{{item.img}}">
                             <div class="text">
                                 <p>{{item.nombre}}</p>
@@ -57,22 +57,15 @@
     </div>
     <div [ngClass]="'border main'">
         @defer (when isVisiML) {
-            <app-musiclist (isVisiMAchange)="getValueIsPlaying($event)"  src_img={{lista[number].img}} nombre={{name}}></app-musiclist> <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
-          } @placeholder
-          {
-            <p>Aún no se ha cargado ninguna lista, haz clic en alguna de ellas</p>
+            <app-musiclist (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)" (time)="gettime($event)" src_img={{lista[number].img}} nombre={{name}}></app-musiclist> <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
           } @error {
-            <p>Problemas con el servidor</p>
+            <p >Problemas con el servidor</p>
           }
     </div>
     <div [ngClass]="'app'">
         @defer (when isVisiMA) {
-            <app-reproductor></app-reproductor>
+            <app-reproductor name={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} ></app-reproductor>
         } 
-        @placeholder
-          {
-            <p>Aún no se ha pinchado ninguna canción, haz click en alguna de ellas para que se cargue el reproductor</p>
-          }
         @error {
             <p>Problemas con el servidor</p>
         }

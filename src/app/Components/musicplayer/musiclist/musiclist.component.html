@@ -33,12 +33,16 @@
                     @if(nombre !== 'Mis lista de canciones') {
                         <p>Lista de las canciones que me gustan de {{nombre}}</p>
                         <h2>Canciones de {{nombre}}</h2>
-                        <p>{{email}} | {{cantsongs}} canciones</p>
+                        @if(nombre === 'NCS'){
+                            <p>{{email}} | {{cantsongs}} canciones</p>
+                        } @else {
+                            <p>{{email}} | 0 canciones</p>
+                        }
                     }
                     @else {
                         <p>Lista de las canciones que me gustan</p>
                         <h2>Canciones que te gustan</h2>
-                        <p>{{email}} | {{cantsongs}} canciones</p>
+                        <p>{{email}} | 0 canciones</p>
                     }
 
                 </div>
@@ -69,7 +73,7 @@
                 @if (nombre === 'NCS'){
                     @for(music of listmusictable; track $index) {
                         <tr (click)="changemusic(tdname.textContent!,tdalbum.textContent!,tdtime.textContent!)">
-                            <td style="text-align: center;">{{$index}}</td>
+                            <td style="text-align: center;">{{$index + 1}}</td>
                             <td style="text-align: left;" #tdname>{{music.n}}</td>
                             <td style="text-align: center;" #tdalbum>{{music.album}}</td>
                             <td style="text-align: center;" #tdtime>{{music.time}}</td>

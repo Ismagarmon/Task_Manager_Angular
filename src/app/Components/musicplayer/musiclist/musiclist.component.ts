@@ -26,6 +26,8 @@ export class MusiclistComponent implements OnInit {
 
   public listmusictable: Listmusic[] = []
 
+  public URL: string = ""
+
   @Output() 
   isVisiMAchange = new EventEmitter<boolean>()
 
@@ -47,7 +49,6 @@ export class MusiclistComponent implements OnInit {
       this.listmusictable = list
       this.cantsongs = this.listmusictable.length
     })
-    this.nombre = 'Mis lista de canciones'
     this.email = "ismagarmon3"
     document.getElementById('playbtn')!.innerHTML = this.isPlay
   }
@@ -62,6 +63,7 @@ export class MusiclistComponent implements OnInit {
   }
 
   public changemusic(name: string, album: string, time: string){
+    this.isPlaying = !this.isPlaying
     this.isVisiMAchange.emit(this.isPlaying)
     this.name.emit(name)
     this.album.emit(album)

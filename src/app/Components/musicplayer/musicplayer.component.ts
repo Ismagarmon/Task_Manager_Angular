@@ -24,9 +24,19 @@ export class MusicplayerComponent implements OnInit {
 
   public number: number = 0
 
-  public isVisiML = false
+  public isVisiML: boolean = false
 
   public isVisiMA: boolean = false
+
+  public album: string = ""
+
+  public namesong: string = ""
+
+  public URL: string = ""
+
+  public time: string = ""
+
+  public srcimg: string = ""
 
   public Nombres: any = [
     { 'Cantante': ["Eminem", "Elton Jhon", "50 Cent"] }
@@ -93,5 +103,25 @@ export class MusicplayerComponent implements OnInit {
 
   public getValueIsPlaying(isMAused: boolean): void {
     this.isVisiMA = isMAused
+  }
+
+  public getURL(url: string): void {
+    this.URL = url
+  }
+
+  public getalbum(album: string): void {
+    this.album = album
+  }
+
+  public getname(name: string): void {
+    this.namesong = name
+  }
+
+  public gettime(time: string): void {
+    this.time = time
+  }
+
+  public changesrcimg(src: string): void {
+    this.srcimg = src
   }
 }
