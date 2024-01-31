@@ -71,3 +71,7 @@
     cursor: pointer;
     margin-left: 1rem;
 }
+
+#svgcorrector {
+    margin-left: 1px;
+}

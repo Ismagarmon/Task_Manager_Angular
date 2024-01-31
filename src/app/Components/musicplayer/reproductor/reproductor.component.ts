@@ -27,14 +27,11 @@ export class ReproductorComponent implements OnChanges, OnInit {
   @Input() 
   public nombreartista: string = ""
 
-  @Input() 
-  public isPlayingNow: string = "false"
-
   public N_audio = new Audio()
 
+  public IsPlaying: boolean = true
+
   constructor(public state: MenusvisiService) {
-    
-    
   }
 
   ngOnInit(): void {
@@ -42,7 +39,9 @@ export class ReproductorComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
+    this.IsPlaying = this.state.showIsPlaying()
+    console.log(this.state.showIsPlaying())
+
     if (this.nombreartista === 'NCS') {
       
       if(changes['nombre']) {
@@ -51,11 +50,19 @@ export class ReproductorComponent implements OnChanges, OnInit {
       else if(this.N_audio.currentTime > 0 && changes['nombre']) {
         this.updateAudio()
       }
-      
-    }
 
-    if(changes['isPlayingNow'] && this.isPlayingNow === 'false'){
-      this.changestate()
+      if(changes['IsPlaying']){
+        if(this.N_audio.paused){
+          this.N_audio.play()
+          this.state.toggleIsPlaying()
+          console.log(this.state.showIsPlaying())
+        } else {
+          this.N_audio.pause()
+          this.state.toggleIsPlaying()
+          console.log(this.state.showIsPlaying())
+        }
+      }
+      
     }
 
     if(this.nombreartista !== 'NCS'){
@@ -82,10 +89,16 @@ export class ReproductorComponent implements OnChanges, OnInit {
     if(this.N_audio.paused){
       this.N_audio.play()
       this.state.toggleIsPlaying()
+      console.log(this.state.showIsPlaying())
     } else {
       this.N_audio.pause()
       this.state.toggleIsPlaying()
+      console.log(this.state.showIsPlaying())
     }
     
+  }
+
+  public changeIsPlayingState(ip: boolean): void {
+    this.IsPlaying = ip
   }
 }

@@ -31,11 +31,6 @@ export class MusiclistComponent implements OnInit{
   isVisiMAchange = new EventEmitter<boolean>()
 
   @Output() 
-  isPlaying = new EventEmitter<string>()
-
-  private IsPlayingBoolean: boolean = false
-
-  @Output() 
   name = new EventEmitter<string>()
 
   @Output() 
@@ -64,15 +59,8 @@ export class MusiclistComponent implements OnInit{
   }
 
   public change(): void {
-    let isplayingstring = ""
-    if(this.state.showIsPlaying()){
-      isplayingstring = "false"
-    } else {
-      isplayingstring = "true"
-    }
     this.state.toggleIsPlaying()
-    console.log('ASd')
-    this.isPlaying.emit(isplayingstring)
+    console.log(this.state.showIsPlaying())
   }
 
   public changemusic(name: string, album: string, time: string){
@@ -81,7 +69,7 @@ export class MusiclistComponent implements OnInit{
     if(!this.state.showIsPlaying()){
       isplayingstring = "true"
       this.state.toggleIsPlaying()
-      this.isPlaying.emit(isplayingstring)
+
     } 
     
     this.isVisiMAchange.emit(true)
