@@ -36,8 +36,11 @@ export class ReproductorComponent implements OnChanges {
 
   public isMuted: boolean = false
 
+  public volumen: number = 50
+
   constructor(public state: MenusvisiService) {
-    this.N_audio.volume = 1
+    this.N_audio.volume = 0.5
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -80,9 +83,10 @@ export class ReproductorComponent implements OnChanges {
     if (!this.N_audio.paused) {
       this.N_audio.pause()
     }
-    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre
+    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre.slice(0, -2)
     await this.N_audio.load()
     this.N_audio.play()
+    
   }
 
   public changestate(): void {
@@ -99,6 +103,12 @@ export class ReproductorComponent implements OnChanges {
   public changevolume(input: HTMLInputElement): void {
     let input_value: string = input.value
     this.N_audio.volume = parseInt(input_value) / 100
+    this.volumen = parseInt(input.value)
+    if(this.N_audio.volume > 0){
+      this.isMuted = false
+    } else {
+      this.isMuted = true
+    }
   }
 
   public mute(input: HTMLInputElement): void {
@@ -106,10 +116,12 @@ export class ReproductorComponent implements OnChanges {
       this.N_audio.volume = 0
       input.value = '0'
       this.isMuted = true
+      this.volumen = 0
     } else {
       this.N_audio.volume = 0.5
       input.value = '50'
       this.isMuted = false
+      this.volumen = 50
     }
   }
 }

@@ -17,7 +17,6 @@
 .ctn {
     width: 100%;
     height: 100%;
-    border: 1px solid white;
 }
 
 .gridbtns {
@@ -110,7 +109,7 @@
 }
 
 .range .field .value.left {
-    top: 1.5rem;
+    top: 1.7rem;
     left: -1.9rem;
 }
 

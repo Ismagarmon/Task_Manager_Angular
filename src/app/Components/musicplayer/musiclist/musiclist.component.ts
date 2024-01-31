@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../../shared/service/apirest.service';
 import { Listmusic } from '../../../shared/interface/listmusic';
 import { MenusvisiService } from '../../../shared/service/menusvisi.service';
+import { AddSuffixPipe } from '../../../shared/pipes/sufix';
 
 @Component({
   selector: 'app-musiclist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddSuffixPipe ],
   templateUrl: './musiclist.component.html',
   styleUrl: './musiclist.component.css'
 })

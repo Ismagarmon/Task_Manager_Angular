@@ -82,7 +82,7 @@
                     @for(music of listmusictable; track $index) {
                         <tr (click)="changemusic(tdname.textContent!,tdalbum.textContent!,tdtime.textContent!)">
                             <td style="text-align: center;">{{$index + 1}}</td>
-                            <td style="text-align: left;" #tdname>{{music.n}}</td>
+                            <td style="text-align: left;" #tdname>{{music.n | addSuffix}}</td>
                             <td style="text-align: center;" #tdalbum>{{music.album}}</td>
                             <td style="text-align: center;" #tdtime>{{music.time}}</td>
                         </tr>
