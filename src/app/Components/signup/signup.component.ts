@@ -22,7 +22,7 @@ export class SignupComponent {
   private id_u: number = 0
 
   constructor(private fb: FormBuilder, private regsiter: LoginService, private router:Router) {
-
+    this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response; console.log(this.lista_usuario)})
   }
 
   public getValor(input: HTMLInputElement): void {
@@ -39,17 +39,11 @@ export class SignupComponent {
     largo: new FormControl(true) 
   })
 
-  public borrarTodas() {
-    localStorage.clear();
-  }
-
   public insertarn(nombre: string, apellidos: string, email: string, password: string): void {
 
     if (this.formularioRegistro.valid) {
 
       alert('El formulario es correcto')
-
-      this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response; console.log(this.lista_usuario)})
 
       this.id_u = this.lista_usuario[this.lista_usuario.length - 1]._id
       this.id_u++

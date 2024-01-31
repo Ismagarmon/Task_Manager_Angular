@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenusvisiService } from '../../../shared/service/menusvisi.service';
 
@@ -32,18 +32,17 @@ export class ReproductorComponent implements OnChanges {
   @Input()
   public IsPlaying: string = ""
 
-  @Output() 
-  isPlaying = new EventEmitter<string>()
-
   public cont: number = 1
 
+  public isMuted: boolean = false
+
   constructor(public state: MenusvisiService) {
+    this.N_audio.volume = 1
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.state.showIsPlaying())
-    console.log(this.IsPlaying)
     this.cont--
+
     if (this.nombreartista === 'NCS') {
       
       if(changes['nombre']) {
@@ -58,13 +57,11 @@ export class ReproductorComponent implements OnChanges {
         if(this.N_audio.paused){
           this.N_audio.play()
           this.state.toggleIsPlaying()
-          console.log(this.state.showIsPlaying())
         } else {
           this.N_audio.pause()
           this.state.toggleIsPlaying()
-          console.log(this.state.showIsPlaying())
         }
-      } else if( changes['IsPlaying']) {
+      } else if(changes['IsPlaying']) {
         if( this.IsPlaying === 'false'){
           this.N_audio.pause()
         } else {
@@ -77,8 +74,6 @@ export class ReproductorComponent implements OnChanges {
     if(this.nombreartista !== 'NCS'){
       this.img_src = 'https://upload.wikimedia.org/wikipedia/commons/d/d0/NoCopyrightSounds_logo_black-white.svg'
     }
-    
-    console.log('Cambios')
   }
 
   private async updateAudio(): Promise<void> {
@@ -94,12 +89,27 @@ export class ReproductorComponent implements OnChanges {
     if(this.N_audio.paused){
       this.N_audio.play()
       this.state.toggleIsPlaying()
-      console.log(this.state.showIsPlaying())
     } else {
       this.N_audio.pause()
       this.state.toggleIsPlaying()
-      console.log(this.state.showIsPlaying())
     }
     
+  }
+
+  public changevolume(input: HTMLInputElement): void {
+    let input_value: string = input.value
+    this.N_audio.volume = parseInt(input_value) / 100
+  }
+
+  public mute(input: HTMLInputElement): void {
+    if(this.N_audio.volume > 0){
+      this.N_audio.volume = 0
+      input.value = '0'
+      this.isMuted = true
+    } else {
+      this.N_audio.volume = 0.5
+      input.value = '50'
+      this.isMuted = false
+    }
   }
 }

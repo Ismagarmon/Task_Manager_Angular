@@ -1,5 +1,5 @@
 <div class="ctn grid">
-    <div class="ctns flex">
+    <div class="ctns flex-v">
         <div class="info flex-v">
             <div class="flex m-c">
                 <img alt="Logo" src={{img_src}}>
@@ -24,27 +24,30 @@
                 }
             </div>
         </div>
+
     </div>
-</div>
-
-
-
-<!-- <div class="volume">
+    <div class="volume">
         <div class="range">
             <div class="sliderValue">
                 <span #valuespan>50</span>
             </div>
             <div class="field">
                 <div class="value left">
-                    <svg width="23" height="23" viewBox="0 0 20 20">
-                        <g fill="grey"><path d="M10 3.75a.75.75 0 0 0-1.264-.546L4.703 7H3.167a.75.75 0 0 0-.7.48A6.985 6.985 0 0 0 2 10c0 .887.165 1.737.468 2.52c.111.29.39.48.7.48h1.535l4.033 3.796A.75.75 0 0 0 10 16.25V3.75Zm5.95 1.3a.75.75 0 0 0-1.06 1.061a5.5 5.5 0 0 1 0 7.778a.75.75 0 0 0 1.06 1.06a7 7 0 0 0 0-9.899Z"/>
-                            <path d="M13.829 7.172a.75.75 0 0 0-1.061 1.06a2.5 2.5 0 0 1 0 3.536a.75.75 0 0 0 1.06 1.06a4 4 0 0 0 0-5.656Z"/>
-                        </g>
-                    </svg>
+                    @if(isMuted){
+                        <svg width="23" height="23" viewBox="0 0 20 20" id="volumensvg" (click)="mute(volumeninput)">
+                            <path fill="grey" fill-rule="evenodd" d="M9.383 3.076A1 1 0 0 1 10 4v12a1 1 0 0 1-1.707.707L4.586 13H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2.586l3.707-3.707a1 1 0 0 1 1.09-.217Zm2.91 4.217a1 1 0 0 1 1.414 0L15 8.586l1.293-1.293a1 1 0 1 1 1.414 1.414L16.414 10l1.293 1.293a1 1 0 0 1-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 0 1-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"/>
+                        </svg>
+                    } @else {
+                        <svg width="23" height="23" viewBox="0 0 20 20" id="volumensvg" (click)="mute(volumeninput)" >
+                            <path fill="grey" d="M10 3.75a.75.75 0 0 0-1.264-.546L4.703 7H3.167a.75.75 0 0 0-.7.48A6.985 6.985 0 0 0 2 10c0 .887.165 1.737.468 2.52c.111.29.39.48.7.48h1.535l4.033 3.796A.75.75 0 0 0 10 16.25V3.75Zm5.95 1.3a.75.75 0 0 0-1.06 1.061a5.5 5.5 0 0 1 0 7.778a.75.75 0 0 0 1.06 1.06a7 7 0 0 0 0-9.899Z"/>
+                            <path fill="grey" d="M13.829 7.172a.75.75 0 0 0-1.061 1.06a2.5 2.5 0 0 1 0 3.536a.75.75 0 0 0 1.06 1.06a4 4 0 0 0 0-5.656Z"/>
+                        </svg>
+                    }
                 </div>
-                <input type="range" min="0" max="100" value="50" step="0.5"
-                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
+                <input id="rangevolume" type="range" min="0" max="100" value="50" step="0.5"
+                    (input)="changevolume(volumeninput)" #volumeninput>
                 <div class="value right">100</div>
             </div>
         </div>
-    </div> -->
+    </div>
+</div>
