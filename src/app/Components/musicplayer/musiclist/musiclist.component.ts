@@ -31,6 +31,11 @@ export class MusiclistComponent implements OnInit{
   isVisiMAchange = new EventEmitter<boolean>()
 
   @Output() 
+  IP = new EventEmitter<string>()
+
+  public IsP: string = "false"
+
+  @Output() 
   name = new EventEmitter<string>()
 
   @Output() 
@@ -60,6 +65,12 @@ export class MusiclistComponent implements OnInit{
 
   public change(): void {
     this.state.toggleIsPlaying()
+    if(this.IsP === 'true'){
+      this.IsP = 'false'
+    } else {
+      this.IsP = 'true'
+    }
+    this.IP.emit(this.IsP)
     console.log(this.state.showIsPlaying())
   }
 
@@ -69,7 +80,8 @@ export class MusiclistComponent implements OnInit{
     if(!this.state.showIsPlaying()){
       isplayingstring = "true"
       this.state.toggleIsPlaying()
-
+      this.IsP = "true"
+      this.IP.emit(this.IsP)
     } 
     
     this.isVisiMAchange.emit(true)

@@ -59,16 +59,15 @@
     </div>
     <div [ngClass]="'border main'">
         @defer (when isVisiML) {
-        <app-musiclist (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)"
+        <app-musiclist (IP)="changeIsp($event)" (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)"
             (time)="gettime($event)" src_img={{lista[number].img}} nombre={{name}}></app-musiclist>
-        <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
         } @error {
         <p>Problemas con el servidor</p>
         }
     </div>
     <div [ngClass]="'app'">
         @defer (when isVisiMA) {
-        <app-reproductor  nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} nombreartista={{name}}></app-reproductor>
+        <app-reproductor IsPlaying={{IsP}} nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} nombreartista={{name}}></app-reproductor>
         }
         @error {
         <p>Problemas con el servidor</p>

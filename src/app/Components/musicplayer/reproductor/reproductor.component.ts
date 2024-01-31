@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenusvisiService } from '../../../shared/service/menusvisi.service';
 
@@ -10,7 +10,7 @@ import { MenusvisiService } from '../../../shared/service/menusvisi.service';
   styleUrl: './reproductor.component.css',
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class ReproductorComponent implements OnChanges, OnInit {
+export class ReproductorComponent implements OnChanges {
 
   @Input() 
   public nombre: string = ""
@@ -29,29 +29,32 @@ export class ReproductorComponent implements OnChanges, OnInit {
 
   public N_audio = new Audio()
 
-  public IsPlaying: boolean = true
+  @Input()
+  public IsPlaying: string = ""
+
+  @Output() 
+  isPlaying = new EventEmitter<string>()
+
+  public cont: number = 1
 
   constructor(public state: MenusvisiService) {
   }
 
-  ngOnInit(): void {
-    this.createAudio()
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
-    this.IsPlaying = this.state.showIsPlaying()
     console.log(this.state.showIsPlaying())
-
+    console.log(this.IsPlaying)
+    this.cont--
     if (this.nombreartista === 'NCS') {
       
       if(changes['nombre']) {
         this.updateAudio()
       }
+      
       else if(this.N_audio.currentTime > 0 && changes['nombre']) {
         this.updateAudio()
       }
 
-      if(changes['IsPlaying']){
+      if(changes['IsPlaying'] && this.cont > 0){
         if(this.N_audio.paused){
           this.N_audio.play()
           this.state.toggleIsPlaying()
@@ -61,6 +64,12 @@ export class ReproductorComponent implements OnChanges, OnInit {
           this.state.toggleIsPlaying()
           console.log(this.state.showIsPlaying())
         }
+      } else if( changes['IsPlaying']) {
+        if( this.IsPlaying === 'false'){
+          this.N_audio.pause()
+        } else {
+          this.N_audio.play()
+        }
       }
       
     }
@@ -68,12 +77,8 @@ export class ReproductorComponent implements OnChanges, OnInit {
     if(this.nombreartista !== 'NCS'){
       this.img_src = 'https://upload.wikimedia.org/wikipedia/commons/d/d0/NoCopyrightSounds_logo_black-white.svg'
     }
-  }
-
-  private async createAudio(): Promise<void> {
-    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre
-    await this.N_audio.load()
-    this.N_audio.play()
+    
+    console.log('Cambios')
   }
 
   private async updateAudio(): Promise<void> {
@@ -96,9 +101,5 @@ export class ReproductorComponent implements OnChanges, OnInit {
       console.log(this.state.showIsPlaying())
     }
     
-  }
-
-  public changeIsPlayingState(ip: boolean): void {
-    this.IsPlaying = ip
   }
 }
