@@ -22,7 +22,7 @@ export class SignupComponent {
   private id_u: number = 0
 
   constructor(private fb: FormBuilder, private regsiter: LoginService, private router:Router) {
-    this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response; console.log(this.lista_usuario)})
+    this.regsiter.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response})
   }
 
   public getValor(input: HTMLInputElement): void {
@@ -62,7 +62,7 @@ export class SignupComponent {
         user
       ).subscribe({
         next: (data) => {
-          alert(data.toString())
+          
         },
 
         complete: () => { alert('Usuario registrado'); this.router.navigate(['signin']) },
