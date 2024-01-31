@@ -4,8 +4,70 @@
     align-items: center;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: [uno] auto [dos] 40% [tres] 20% [cuatro];
+}
+
+.flex-v {
+    display: flex;
+    align-items: center;
+}
+
 .ctn {
     width: 100%;
     height: 100%;
     border: 1px solid white;
+}
+
+.gridbtns {
+    display: grid;
+    grid-template-columns: [uno] auto [dos];
+    grid-template-rows: [uno] auto [dos] auto [tres];
+    grid-template-areas: 
+    " p/p "
+    " time ";
+    place-items: center;
+}
+
+.pp {
+    grid-area: p/p;
+    
+}
+.border {
+    border: 1px solid purple
+}
+
+.info {
+    width: 80%;
+    height: 80%;
+}
+
+.info img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.m-c {
+    margin-right: 0.5rem;
+    border: 1px solid purple
+}
+
+.text p:first-child {
+    margin-bottom: 0.5rem;
+    width: 18rem;
+    overflow-x: hidden;
+    max-height: 1.3rem;
+}
+
+.plpa {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(39, 177, 39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
 }

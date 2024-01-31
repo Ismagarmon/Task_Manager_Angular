@@ -1,5 +1,50 @@
-<div class="flex ctn">
-    <div>
-        REPRODUCTOR DE MUSICA
+<div class="ctn grid">
+    <div class="ctns flex">
+        <div class="info flex-v">
+            <div class="flex m-c">
+                <img alt="Logo" src={{img_src}}>
+            </div>
+            <div class="text">
+                <p>{{nombre}}</p>
+                <p>{{album}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="gridbtns">
+        <div class="pic">
+            <div class="il plpa" (click)="changestate()">
+                @if (state.StateIsPlaying$() | async){
+                    <svg width="15" height="15" viewBox="0 0 1024 1024">
+                        <path d="M416.272 0H192.064c-17.664 0-32 14.32-32 32v960c0 17.664 14.336 32 32 32h224.208c17.68 0 32-14.336 32-32V32c0-17.68-14.32-32-32-32m-32 960H224.064V64h160.208zM831.937 0H608.881c-17.68 0-32 14.32-32 32v960c0 17.664 14.32 32 32 32h223.056c17.68 0 32-14.336 32-32V32c0-17.68-14.304-32-32-32m-32 960H640.881V64h159.056z"/>
+                    </svg>
+                } @else {
+                    <svg width="15" height="15" viewBox="0 0 1024 1024">
+                        <path d="m144.624 65.392l735.744 446.592l-736.736 446.624zm0-64a63.765 63.765 0 0 0-31.088 8.063c-20.32 11.28-32.912 32.705-32.912 55.937l-.992 893.216a63.958 63.958 0 0 0 32.912 55.936a63.937 63.937 0 0 0 31.088 8.065c11.712 0 23.472-3.216 33.775-9.664l736.72-446.624a63.94 63.94 0 0 0 30.257-54.336c0-22.112-11.44-42.672-30.257-54.352L178.4 11.025a64.084 64.084 0 0 0-33.775-9.632z"/>
+                    </svg>
+                }
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+<!-- <div class="volume">
+        <div class="range">
+            <div class="sliderValue">
+                <span #valuespan>50</span>
+            </div>
+            <div class="field">
+                <div class="value left">
+                    <svg width="23" height="23" viewBox="0 0 20 20">
+                        <g fill="grey"><path d="M10 3.75a.75.75 0 0 0-1.264-.546L4.703 7H3.167a.75.75 0 0 0-.7.48A6.985 6.985 0 0 0 2 10c0 .887.165 1.737.468 2.52c.111.29.39.48.7.48h1.535l4.033 3.796A.75.75 0 0 0 10 16.25V3.75Zm5.95 1.3a.75.75 0 0 0-1.06 1.061a5.5 5.5 0 0 1 0 7.778a.75.75 0 0 0 1.06 1.06a7 7 0 0 0 0-9.899Z"/>
+                            <path d="M13.829 7.172a.75.75 0 0 0-1.061 1.06a2.5 2.5 0 0 1 0 3.536a.75.75 0 0 0 1.06 1.06a4 4 0 0 0 0-5.656Z"/>
+                        </g>
+                    </svg>
+                </div>
+                <input type="range" min="0" max="100" value="50" step="0.5"
+                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
+                <div class="value right">100</div>
+            </div>
+        </div>
+    </div> -->

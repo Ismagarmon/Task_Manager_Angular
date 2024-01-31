@@ -28,6 +28,8 @@ export class MusicplayerComponent implements OnInit {
 
   public isVisiMA: boolean = false
 
+  public isPlaying: string = "false"
+
   public album: string = ""
 
   public namesong: string = ""
@@ -120,5 +122,9 @@ export class MusicplayerComponent implements OnInit {
 
   public changesrcimg(src: string): void {
     this.srcimg = src
+  }
+
+  public changeisplaying(ip: string): void {
+    this.isPlaying = ip
   }
 }

@@ -11,15 +11,17 @@ import { MenusvisiService } from '../../../shared/service/menusvisi.service';
   templateUrl: './musiclist.component.html',
   styleUrl: './musiclist.component.css'
 })
-export class MusiclistComponent implements OnInit, OnChanges{
+export class MusiclistComponent implements OnInit{
 
-  @Input() public src_img: string = ""
+  @Input() 
+  public src_img: string = ""
 
   public email: string = ""
 
   public cantsongs: number = 0
 
-  @Input() public nombre: string = ""
+  @Input() 
+  public nombre: string = ""
 
   public listmusictable: Listmusic[] = []
 
@@ -27,6 +29,11 @@ export class MusiclistComponent implements OnInit, OnChanges{
 
   @Output() 
   isVisiMAchange = new EventEmitter<boolean>()
+
+  @Output() 
+  isPlaying = new EventEmitter<string>()
+
+  private IsPlayingBoolean: boolean = false
 
   @Output() 
   name = new EventEmitter<string>()
@@ -57,18 +64,29 @@ export class MusiclistComponent implements OnInit, OnChanges{
   }
 
   public change(): void {
+    let isplayingstring = ""
+    if(this.state.showIsPlaying()){
+      isplayingstring = "false"
+    } else {
+      isplayingstring = "true"
+    }
     this.state.toggleIsPlaying()
+    console.log('ASd')
+    this.isPlaying.emit(isplayingstring)
   }
 
   public changemusic(name: string, album: string, time: string){
-    this.state.toggleIsPlaying() 
-    this.isVisiMAchange.emit(this.state.showIsPlaying())
+    let isplayingstring = ""
+
+    if(!this.state.showIsPlaying()){
+      isplayingstring = "true"
+      this.state.toggleIsPlaying()
+      this.isPlaying.emit(isplayingstring)
+    } 
+    
+    this.isVisiMAchange.emit(true)
     this.name.emit(name)
     this.album.emit(album)
     this.time.emit(time)
-  }
-
-  ngOnChanges(): void {
-      
   }
 }

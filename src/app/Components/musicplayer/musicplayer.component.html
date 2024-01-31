@@ -34,7 +34,8 @@
             <div class="listado">
                 @for(item of lista; track $index) {
                     @if(item.nombre === 'NCS') {
-                        <div class="ctnlist" style="height: calc(4rem - 2px);" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
+                        <div class="ctnlist" style="height: calc(4rem - 2px);"
+                            (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
                             <img src="{{item.img}}" style="height: 4rem;" alt="Logo">
                             <div class="text">
                                 <p style="display: block;">{{item.nombre}}</p>
@@ -42,7 +43,8 @@
                             </div>
                         </div>
                     } @else {
-                        <div class="ctnlist" (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
+                        <div class="ctnlist"
+                            (click)="cambiarnumero($index);cambiarnombre(item.nombre);changemusiclist();changesrcimg(item.img)">
                             <img src="{{item.img}}" alt="Logo">
                             <div class="text">
                                 <p>{{item.nombre}}</p>
@@ -57,42 +59,23 @@
     </div>
     <div [ngClass]="'border main'">
         @defer (when isVisiML) {
-            <app-musiclist (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)" (time)="gettime($event)" src_img={{lista[number].img}} nombre={{name}}></app-musiclist> <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
-          } @error {
-            <p >Problemas con el servidor</p>
-          }
+        <app-musiclist (isPlaying)="changeisplaying($event)" (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)"
+            (time)="gettime($event)" src_img={{lista[number].img}} nombre={{name}}></app-musiclist>
+        <!-- Aquí me da un error porque le estoy pasando una lista que al principio está undefined, pero luego cargo valores con el service al obterner las listas -->
+        } @error {
+        <p>Problemas con el servidor</p>
+        }
     </div>
     <div [ngClass]="'app'">
         @defer (when isVisiMA) {
-            <app-reproductor nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} ></app-reproductor>
-        } 
+        <app-reproductor  nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} nombreartista={{name}} isPlayingNow={{isPlaying}}></app-reproductor>
+        }
         @error {
-            <p>Problemas con el servidor</p>
+        <p>Problemas con el servidor</p>
         }
     </div>
 </div>
 
-
-
-<!-- <div class="volume">
-        <div class="range">
-            <div class="sliderValue">
-                <span #valuespan>50</span>
-            </div>
-            <div class="field">
-                <div class="value left">
-                    <svg width="23" height="23" viewBox="0 0 20 20">
-                        <g fill="grey"><path d="M10 3.75a.75.75 0 0 0-1.264-.546L4.703 7H3.167a.75.75 0 0 0-.7.48A6.985 6.985 0 0 0 2 10c0 .887.165 1.737.468 2.52c.111.29.39.48.7.48h1.535l4.033 3.796A.75.75 0 0 0 10 16.25V3.75Zm5.95 1.3a.75.75 0 0 0-1.06 1.061a5.5 5.5 0 0 1 0 7.778a.75.75 0 0 0 1.06 1.06a7 7 0 0 0 0-9.899Z"/>
-                            <path d="M13.829 7.172a.75.75 0 0 0-1.061 1.06a2.5 2.5 0 0 1 0 3.536a.75.75 0 0 0 1.06 1.06a4 4 0 0 0 0-5.656Z"/>
-                        </g>
-                    </svg>
-                </div>
-                <input type="range" min="0" max="100" value="50" step="0.5"
-                    (input)="changevalue(valuespan, volumeninput)" (mouseup)="mouseup(valuespan)" #volumeninput>
-                <div class="value right">100</div>
-            </div>
-        </div>
-    </div> -->
 }@else {
 {{Nombres | json}}
 }
