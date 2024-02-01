@@ -123,14 +123,27 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public changestate(): void {
-    if (this.N_audio.paused) {
+  public changestate(input: HTMLInputElement): void {
+    if(this.N_audio.ended){
+      this.inlinet = "0 : 00"
+      input.value = "0"
+      this.interval = setInterval(() => {
+        this.functionInterval()
+        
+      }, 300)
+      this.N_audio.currentTime = 0
       this.N_audio.play()
       this.state.toggleIsPlaying()
     } else {
-      this.N_audio.pause()
-      this.state.toggleIsPlaying()
+      if (this.N_audio.paused) {
+        this.N_audio.play()
+        this.state.toggleIsPlaying()
+      } else {
+        this.N_audio.pause()
+        this.state.toggleIsPlaying()
+      }
     }
+    
 
   }
 
