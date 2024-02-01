@@ -17,15 +17,18 @@ export class MenuComponent implements OnChanges{
 
   public user: string = ""
 
-  private getUserName(): string {
+  private getUserName(): void {
     const jsonstorage = sessionStorage.getItem('Usuario')
     const user = JSON.parse(jsonstorage!)
-
-    return user.nombre
+    this.user = user.nombre
   }
 
   ngOnChanges(): void {
-    this.user = this.getUserName()
+    if(this.state.mostrarMenuPrimario()){
+      this.getUserName()
+    }
+    
+    console.log('Cambio')
   }
 
   public logout(): void {

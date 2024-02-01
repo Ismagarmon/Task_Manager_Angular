@@ -145,7 +145,7 @@
     appearance: none;
     height: 4px;
     width: 100%;
-    background: gray;
+    background: white;
     border-radius: 5px;
     outline: none;
     border: none;
@@ -155,24 +155,16 @@
 .range .field input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    height: 5px;
-    width: 5px;
+    height: 12px;
+    width: 12px;
     background: green;
     border-radius: 50%;
-    border: 6px solid green;
+    border: 2px solid white;
     cursor: pointer;
     transition: all .3s;
 }
 
 .range .field input::-moz-range-progress {
-    background-color: white;
-    width: 100%;
-    height: 4px;
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
-}
-
-.range .field input::-moz-range-progress:hover {
     background-color: green;
     width: 100%;
     height: 4px;
@@ -186,4 +178,53 @@
 
 #volumensvg:hover path {
     fill: white
+}
+
+.musicminutes {
+    position: relative;
+    width: 100%;
+    height: 2rem;
+}
+
+.musicminutes p:first-child {
+    position: absolute;
+    left: 3rem;
+}
+
+.musicminutes p:last-child {
+    position: absolute;
+    right: 1rem;
+}
+
+#time {
+    position: absolute;
+    left: 8rem;
+    width: 70%;
+    top: 0.5rem;
+    appearance: none;
+    height: 4px;
+    background: white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+#time::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    background: green;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#time::-moz-range-progress {
+    background-color: green;
+    width: 100%;
+    height: 4px;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
 }

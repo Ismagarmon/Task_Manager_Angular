@@ -59,7 +59,7 @@
     </div>
     <div [ngClass]="'border main'">
         @defer (when isVisiML) {
-        <app-musiclist (IP)="changeIsp($event)" (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)"
+        <app-musiclist (isVisiMAchange)="getValueIsPlaying($event)" (name)="getname($event)" (album)="getalbum($event)"
             (time)="gettime($event)" src_img={{lista[number].img}} nombre={{name}}></app-musiclist>
         } @error {
         <p>Problemas con el servidor</p>
@@ -67,7 +67,7 @@
     </div>
     <div [ngClass]="'app'">
         @defer (when isVisiMA) {
-        <app-reproductor IsPlaying={{IsP}} nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} nombreartista={{name}}></app-reproductor>
+        <app-reproductor nombre={{namesong}} img_src={{srcimg}} time={{time}} album={{album}} nombreartista={{name}}></app-reproductor>
         }
         @error {
         <p>Problemas con el servidor</p>
