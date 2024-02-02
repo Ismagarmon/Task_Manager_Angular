@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs'
 })
 export class MenusvisiService {
 
-  private EstadoMenuSecundario = new BehaviorSubject<boolean>(false)
-  private EstadoMenuPrimario = new BehaviorSubject<boolean>(false)
+  
+  //------------------------------------------------------------------------
   private EstadoIsPlaying = new BehaviorSubject<boolean>(false)
 
   toggleIsPlaying(): void {
@@ -22,6 +22,8 @@ export class MenusvisiService {
     return this.EstadoIsPlaying.asObservable()
   }
 
+  //------------------------------------------------------------------------
+  private EstadoMenuSecundario = new BehaviorSubject<boolean>(false)
   mostrarMenuSecundario(): void {
     this.EstadoMenuSecundario.next(true)
   }
@@ -38,6 +40,9 @@ export class MenusvisiService {
     this.EstadoMenuSecundario.next(!this.EstadoMenuSecundario.value)
   }
 
+  //------------------------------------------------------------------------
+  private EstadoMenuPrimario = new BehaviorSubject<boolean>(false)
+
   mostrarMenuPrimario(): Boolean {
     return this.EstadoMenuPrimario.value
   }
@@ -48,5 +53,14 @@ export class MenusvisiService {
 
   toggleMenuPrimario(): void {
     this.EstadoMenuPrimario.next(!this.EstadoMenuPrimario.value)
+  }
+
+  //------------------------------------------------------------------------
+  private sharedVariableSubject = new BehaviorSubject<boolean>(false)
+
+  globalVariable = this.sharedVariableSubject.asObservable()
+
+  setSharedVariable(value: boolean): void {
+    this.sharedVariableSubject.next(value)
   }
 }

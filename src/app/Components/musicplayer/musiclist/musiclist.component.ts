@@ -28,6 +28,9 @@ export class MusiclistComponent implements OnInit{
 
   public URL: string = ""
 
+
+  public IsPlaying: boolean = false
+
   @Output() 
   isVisiMAchange = new EventEmitter<boolean>()
 
@@ -49,6 +52,12 @@ export class MusiclistComponent implements OnInit{
       this.listmusictable = list
       this.cantsongs = this.listmusictable.length
     })
+
+    this.state.globalVariable.subscribe((value) => {
+      if(value !== this.IsPlaying) {
+        this.IsPlaying = value
+      }
+    })
     
   }
 
@@ -60,16 +69,20 @@ export class MusiclistComponent implements OnInit{
   }
 
   public changemusic(name: string, album: string, time: string){
-    let isplayingstring = ""
-
-    if(!this.state.showIsPlaying()){
-      isplayingstring = "true"
-      this.state.toggleIsPlaying()
+    
+    if(!this.IsPlaying){
+      this.IsPlaying = !this.IsPlaying
+      this.state.setSharedVariable(this.IsPlaying)
     } 
     
     this.isVisiMAchange.emit(true)
     this.name.emit(name)
     this.album.emit(album)
     this.time.emit(time)
+  }
+
+  public change(): void {
+    this.IsPlaying = !this.IsPlaying
+    this.state.setSharedVariable(this.IsPlaying)
   }
 }

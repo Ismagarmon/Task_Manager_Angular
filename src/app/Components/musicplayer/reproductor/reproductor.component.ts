@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenusvisiService } from '../../../shared/service/menusvisi.service';
 
@@ -10,7 +10,7 @@ import { MenusvisiService } from '../../../shared/service/menusvisi.service';
   styleUrl: './reproductor.component.css',
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class ReproductorComponent implements OnChanges, OnDestroy {
+export class ReproductorComponent implements OnChanges, OnDestroy, OnInit {
 
   @Input()
   public nombre: string = ""
@@ -38,6 +38,8 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
 
   public volumen: number = 20
 
+  public volumenAuxiliar: number = 0
+
   public maxtime: number = 0
 
   public inlinet: string = ""
@@ -48,9 +50,29 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
 
   private m: number = 0
 
+  public IsPlaying: boolean = false
+
   constructor(public state: MenusvisiService) {
     this.N_audio.volume = 0.2
 
+  }
+
+  ngOnInit(): void {
+    this.state.globalVariable.subscribe((value) => {
+      if(value !== this.IsPlaying) {
+        this.IsPlaying = value
+        if(this.N_audio.ended){
+          this.updateAudio()
+        } else {
+          if (this.N_audio.paused) {
+            this.N_audio.play()
+          } else {
+            this.N_audio.pause()
+          }
+        }
+        
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -62,7 +84,7 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
         this.updateAudio()
       } else if (this.N_audio.currentTime > 0 && changes['nombre']) {
         this.updateAudio()
-      }
+      } 
 
       /* if (changes['IsPlaying'] && this.cont > 0) {
         if (this.N_audio.paused) {
@@ -94,6 +116,7 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
     this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre.slice(0, -2)
     await this.N_audio.load()
     this.N_audio.play()
+
     setTimeout(() => {
       this.maxtime = Math.floor(this.N_audio.duration)
     },100)
@@ -109,7 +132,8 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
 
   public functionInterval(): void {
     if(this.N_audio.ended){
-      this.state.toggleIsPlaying()
+      this.IsPlaying = !this.IsPlaying
+      this.state.setSharedVariable(this.IsPlaying)
       clearInterval(this.interval)
     } else {
       this.m = Math.floor(this.N_audio.currentTime / 60)
@@ -133,14 +157,17 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
       }, 300)
       this.N_audio.currentTime = 0
       this.N_audio.play()
-      this.state.toggleIsPlaying()
+      this.IsPlaying = !this.IsPlaying
+      this.state.setSharedVariable(this.IsPlaying)
     } else {
       if (this.N_audio.paused) {
         this.N_audio.play()
-        this.state.toggleIsPlaying()
+        this.IsPlaying = !this.IsPlaying
+        this.state.setSharedVariable(this.IsPlaying)
       } else {
         this.N_audio.pause()
-        this.state.toggleIsPlaying()
+        this.IsPlaying = !this.IsPlaying
+        this.state.setSharedVariable(this.IsPlaying)
       }
     }
     
@@ -151,6 +178,7 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
     let input_value: string = input.value
     this.N_audio.volume = parseInt(input_value) / 100
     this.volumen = parseInt(input.value)
+    this.volumenAuxiliar = this.volumen
     if (this.N_audio.volume > 0) {
       this.isMuted = false
     } else {
@@ -159,28 +187,28 @@ export class ReproductorComponent implements OnChanges, OnDestroy {
   }
 
   public mute(input: HTMLInputElement): void {
+
     if (this.N_audio.volume > 0) {
       this.N_audio.volume = 0
       input.value = '0'
       this.isMuted = true
+      this.volumenAuxiliar = this.volumen
       this.volumen = 0
     } else {
-      this.N_audio.volume = 0.2
-      input.value = '20'
+      this.N_audio.volume = this.volumenAuxiliar / 100
+      input.value = this.volumenAuxiliar.toString()
       this.isMuted = false
-      this.volumen = 20
+      this.volumen = this.volumenAuxiliar
     }
   }
 
   public changetime(input: HTMLInputElement): void {
     this.N_audio.currentTime = parseInt(input.value)
-
-    
   }
 
   ngOnDestroy(): void {
-      this.N_audio.volume = 0
-      this.N_audio.pause()
-      this.N_audio.src = ''
+    this.N_audio.volume = 0
+    this.N_audio.pause()
+    this.N_audio.src = ''
   }
 }
