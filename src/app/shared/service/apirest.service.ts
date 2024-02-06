@@ -6,6 +6,7 @@ import { List } from '../interface/list';
 import { Message } from '../interface/message';
 import { SignInUser } from '../interface/sign-in-user';
 import { Listmusic } from '../interface/listmusic';
+import { Card } from '../interface/card';
 
 
 
@@ -14,7 +15,7 @@ import { Listmusic } from '../interface/listmusic';
 })
 export class LoginService {
 
-  private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io/api/users"
+  private URL: string = "https://arnem-dev-sqqc.1.us-1.fl0.io"
 
   private URL_LOCALHOST: string = "http://localhost:8092"
 
@@ -58,5 +59,9 @@ export class LoginService {
 
   public getMusicList(): Observable<Listmusic[]> {
     return this.http.get<Listmusic[]>(this.URL_LOCALHOST+'/song/listncsmusic')
+  }
+
+  public getcards(): Observable<Card[]> {
+    return this.http.get<Card[]>(this.URL_LOCALHOST + '/cards/cartas')
   }
 }

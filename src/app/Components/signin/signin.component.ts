@@ -34,12 +34,16 @@ export class SigninComponent {
 
     this.login.SignIn(log).subscribe(
       {
-        next: (data) => {
+        next: async (data) => {
           if(data.Message){
-            alert('Usuario correcto'); 
-            this.state.toggleMenuPrimario() 
-            this.router.navigate(['profile'])
-            this.getUserToSesionStorage(email)
+            alert('Usuario correcto')
+            await this.getUserToSesionStorage(email)
+            this.state.toggleMenuPrimario()
+            
+            setTimeout(() => {
+              this.router.navigate(['profile'])
+            },100)
+            
           }
         },
 

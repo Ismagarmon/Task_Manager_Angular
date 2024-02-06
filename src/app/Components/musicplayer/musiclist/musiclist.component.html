@@ -81,7 +81,7 @@
                 @if (nombre === 'NCS'){
                     @for(music of listmusictable; track $index) {
                         <tr (click)="changemusic(tdname.textContent!,tdalbum.textContent!,tdtime.textContent!)">
-                            <td style="text-align: center;">
+                            <td style="text-align: center;" class="c-m">
                                 @if (IsPlaying && music.n === nombrecancion) {
                                     <img width="14" height="14" alt="equiliser" src="https://open.spotifycdn.com/cdn/images/equaliser-animated-green.f5eb96f2.gif">
                                 } @else if (!IsPlaying && music.n === nombrecancion) {

@@ -9,8 +9,6 @@
     left: 20px;
     top: 120px;
     width: 80%;
-    height: 70%;
-    border: 1px solid black
 }
 
 .punt {
@@ -51,3 +49,4 @@ button {
 button:active {
     transform: translateY(4px);
 }
+

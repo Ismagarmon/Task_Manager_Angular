@@ -178,3 +178,7 @@ tbody tr {
 tbody tr:hover {
     background-color: grey;
 }
+
+.c-m {
+    width: 10%;
+}
