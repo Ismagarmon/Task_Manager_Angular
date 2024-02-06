@@ -91,7 +91,7 @@ export class ReproductorComponent implements OnChanges, OnDestroy, OnInit {
     if (!this.N_audio.paused) {
       this.N_audio.pause()
     }
-    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre.slice(0, -2)
+    this.N_audio.src = 'http://localhost:8092/song/name/' + this.nombre.slice(0, -3)
     await this.N_audio.load()
     this.N_audio.play()
 

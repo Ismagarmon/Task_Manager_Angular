@@ -28,6 +28,7 @@ export class MusiclistComponent implements OnInit{
 
   public URL: string = ""
 
+  public nombrecancion: string = ""
 
   public IsPlaying: boolean = false
 
@@ -74,7 +75,9 @@ export class MusiclistComponent implements OnInit{
       this.IsPlaying = !this.IsPlaying
       this.state.setSharedVariable(this.IsPlaying)
     } 
-    
+
+    this.nombrecancion = name.slice(0,-3)
+
     this.isVisiMAchange.emit(true)
     this.name.emit(name)
     this.album.emit(album)
@@ -85,4 +88,5 @@ export class MusiclistComponent implements OnInit{
     this.IsPlaying = !this.IsPlaying
     this.state.setSharedVariable(this.IsPlaying)
   }
+
 }
