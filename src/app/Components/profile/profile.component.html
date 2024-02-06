@@ -1,3 +1,16 @@
+<div class="data">
+    <h1>Datos del usuario:</h1>
+    @for(user of lista_usuario; track $index){
+        @if(email === user.email){
+            <p>{{user.nombre}}</p>
+            <p>{{user.apellidos}}</p>
+            <p>{{user.email}}</p>
+            <p>{{user.puntuacion}}</p>
+        }
+    }
+</div>
+
+
 <table>
     <thead>
         <th>ID</th>
@@ -12,24 +25,24 @@
         @for(user of lista_usuario; track $index){
         <tr>
 
-                <td>
-                    <input value={{user._id}} readonly>
-                </td>
-                <td>
-                    <input value={{user.nombre}}>
-                </td>
-                <td>
-                    <input value={{user.apellidos}}>
-                </td>
-                <td>
-                    <input value={{user.email}}>
-                </td>
-                <td>
-                    <input value={{user.puntuacion}} readonly>
-                </td>
-                <td>
-                    <button id={{user._id}} (click)="eliminarusuario(btndelete.id)" #btndelete>Eliminar</button>
-                </td>
+            <td>
+                <input value={{user._id}} readonly>
+            </td>
+            <td>
+                <input value={{user.nombre}}>
+            </td>
+            <td>
+                <input value={{user.apellidos}}>
+            </td>
+            <td>
+                <input value={{user.email}}>
+            </td>
+            <td>
+                <input value={{user.puntuacion}} readonly>
+            </td>
+            <td>
+                <button id={{user._id}} (click)="eliminarusuario(btndelete.id)" #btndelete>Eliminar</button>
+            </td>
 
         </tr>
         }

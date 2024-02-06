@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}
+
+input {
+    width: 90%;
+}
+
+.data {
+    width: 70%;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.data p {
+    display: inline-block;
+    
+    margin: 2rem auto;
+    margin-right: 1rem;
+}

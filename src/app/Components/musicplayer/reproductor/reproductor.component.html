@@ -50,8 +50,8 @@
                         </svg>
                     }
                 </div>
-                <input id="rangevolume" type="range" min="0" max="100" value="20" step="0.5"
-                    (input)="changevolume(volumeninput)" #volumeninput>
+                <input id="rangevolume" type="range" min="0" max="100" value="20" step="1"
+                    (input)="changevolume(volumeninput)" #volumeninput (mousewheel)="changevolume(volumeninput)">
                 <div class="value right" id="idenvolum">{{volumen}}</div>
             </div>
         </div>

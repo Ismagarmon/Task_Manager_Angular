@@ -29,11 +29,6 @@ export class ReproductorComponent implements OnChanges, OnDestroy, OnInit {
 
   public N_audio = new Audio()
 
-  /* @Input()
-  public IsPlaying: string = "" */
-
-  public cont: number = 1
-
   public isMuted: boolean = false
 
   public volumen: number = 20
@@ -76,7 +71,6 @@ export class ReproductorComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.cont--
 
     if (this.nombreartista === 'NCS') {
 
@@ -85,22 +79,6 @@ export class ReproductorComponent implements OnChanges, OnDestroy, OnInit {
       } else if (this.N_audio.currentTime > 0 && changes['nombre']) {
         this.updateAudio()
       } 
-
-      /* if (changes['IsPlaying'] && this.cont > 0) {
-        if (this.N_audio.paused) {
-          this.N_audio.play()
-          this.state.toggleIsPlaying()
-        } else {
-          this.N_audio.pause()
-          this.state.toggleIsPlaying()
-        }
-      } else if (changes['IsPlaying']) {
-        if (this.IsPlaying === 'false') {
-          this.N_audio.pause()
-        } else {
-          this.N_audio.play()
-        }
-      } */
 
     }
 
