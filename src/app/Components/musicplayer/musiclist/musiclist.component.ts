@@ -17,7 +17,7 @@ export class MusiclistComponent implements OnInit{
   @Input() 
   public src_img: string = ""
 
-  public email: string = ""
+  public email: string | undefined = ""
 
   public cantsongs: number = 0
 
@@ -45,7 +45,8 @@ export class MusiclistComponent implements OnInit{
   time = new EventEmitter<string>()
 
   constructor(private getlist: LoginService, public state: MenusvisiService) {
-    this.email = this.getEmailUser()
+    this.state.globalEmailVariable.subscribe()
+    this.email = this.state.getEmailVariable().split("@").shift()
   }
 
   ngOnInit(): void {
@@ -60,13 +61,6 @@ export class MusiclistComponent implements OnInit{
       }
     })
     
-  }
-
-  private getEmailUser(): string {
-    const jsonstorage = sessionStorage.getItem('Usuario')
-    const user = JSON.parse(jsonstorage!)
-    let email = user.email.split("@").shift()
-    return email
   }
 
   public changemusic(name: string, album: string, time: string){

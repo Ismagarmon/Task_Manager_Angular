@@ -10,16 +10,16 @@ import { MenusvisiService } from '../shared/service/menusvisi.service';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent implements OnChanges{
-
-  constructor(private router:Router, public state: MenusvisiService){
-  }
+export class MenuComponent {
 
   public user: string = ""
 
-  ngOnChanges(): void {
-    this.state.globalVariable.subscribe()
-    this.user = this.state.getNameVariable()
+  constructor(private router:Router, public state: MenusvisiService){
+    this.state.globalNameVariable.subscribe( (value) => {
+      if (this.user !== value) {
+          this.user = this.state.getNameVariable()
+      }
+    })
   }
 
   public logout(): void {

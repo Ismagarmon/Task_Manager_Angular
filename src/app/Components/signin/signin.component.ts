@@ -56,13 +56,13 @@ export class SigninComponent {
   }
 
   private getUserToSesionStorage(email: string ): void {
-    this.login.findEmail(email).subscribe(
-      {
-        next: (data: Usuario) => {
-          this.state.globalVariable.subscribe()
-          this.state.setNameVariable(data.nombre)
-        }
-      }
-    )
+    this.login.findEmail(email).subscribe( (user: Usuario) => {
+      this.state.globalNameVariable.subscribe()
+      this.state.setNameVariable(user.nombre)
+      this.state.globalEmailVariable.subscribe()
+      this.state.setEmailVariable(user.email)
+      this.state.globalPuntuacionVariable.subscribe()
+      this.state.setPuntuacionVariable(user.puntuacion)
+    })
   }
 }

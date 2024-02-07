@@ -4,6 +4,7 @@ import { UserpointsComponent } from './userpoints/userpoints.component';
 import { Card } from '../../shared/interface/card';
 import { LoginService } from '../../shared/service/apirest.service';
 import { UpUser } from '../../shared/interface/up-user';
+import { MenusvisiService } from '../../shared/service/menusvisi.service';
 
 @Component({
   selector: 'app-cardgame',
@@ -12,7 +13,7 @@ import { UpUser } from '../../shared/interface/up-user';
   templateUrl: './cardgame.component.html',
   styleUrl: './cardgame.component.css'
 })
-export class CardgameComponent implements OnInit, OnDestroy {
+export class CardgameComponent implements OnDestroy {
 
   public hidden: Boolean = false
 
@@ -34,19 +35,12 @@ export class CardgameComponent implements OnInit, OnDestroy {
 
   private puntuacionAuxiliar: number = 0
 
-  constructor(private cards: LoginService) {
+  constructor(private cards: LoginService, public state: MenusvisiService) {
     this.cards.getcards().subscribe((data: Card[]) => {
       this.cardslist = data
     })
-
-  }
-
-  ngOnInit(): void {
-    const jsonstorage = sessionStorage.getItem('Usuario')
-    const userJSON = JSON.parse(jsonstorage!)
-
-    userJSON.puntuacion = this.puntuacionAuxiliar
-    console.log(this.puntuacionAuxiliar)
+    this.state.globalPuntuacionVariable.subscribe()
+    this.puntuacionAuxiliar = this.state.getPuntuacionVariable()
   }
 
   public changehidden(btn: HTMLButtonElement): void {

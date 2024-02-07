@@ -159,12 +159,7 @@
         position: absolute;
         left: 1rem;
         cursor: default;
-    }
-
-    #menu li:first-child i {
-        cursor: pointer;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 16rem;
     }
 
     #menu li:nth-child(3),
@@ -209,5 +204,9 @@
 
     .active {
         background-color: gray;
+    }
+
+    #name {
+        color: white;
     }
 }

@@ -76,4 +76,30 @@ export class MenusvisiService {
   getNameVariable(): string {
     return this.sharedNameSubject.value
   }
+
+  //------------------------------------------------------------------------
+  private sharedEmailSubject = new BehaviorSubject<string>('')
+
+  globalEmailVariable = this.sharedEmailSubject.asObservable()
+
+  setEmailVariable(value: string): void {
+    this.sharedEmailSubject.next(value)
+  }
+
+  getEmailVariable(): string {
+    return this.sharedEmailSubject.value
+  }
+
+  //------------------------------------------------------------------------
+  private sharedPuntuacionSubject = new BehaviorSubject<number>(0)
+
+  globalPuntuacionVariable = this.sharedPuntuacionSubject.asObservable()
+
+  setPuntuacionVariable(value: number): void {
+    this.sharedPuntuacionSubject.next(value)
+  }
+
+  getPuntuacionVariable(): number {
+    return this.sharedPuntuacionSubject.value
+  }
 }

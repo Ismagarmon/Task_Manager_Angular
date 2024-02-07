@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../shared/service/apirest.service';
 import { Usuario } from '../../shared/interface/usuario';
+import { MenusvisiService } from '../../shared/service/menusvisi.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +17,9 @@ export class ProfileComponent implements OnInit{
 
   public email: string = ""
 
-  constructor(private users: LoginService) {
-    const jsonstorage = sessionStorage.getItem('Usuario')
-    const user = JSON.parse(jsonstorage!)
-    this.email = user.email
+  constructor(private users: LoginService, public state: MenusvisiService) {
+    this.state.globalEmailVariable.subscribe()
+    this.email = this.state.getEmailVariable()
   }
 
   ngOnInit(): void {
