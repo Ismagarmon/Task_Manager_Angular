@@ -102,4 +102,17 @@ export class MenusvisiService {
   getPuntuacionVariable(): number {
     return this.sharedPuntuacionSubject.value
   }
+
+  //------------------------------------------------------------------------
+  private sharedIDSubject = new BehaviorSubject<number>(0)
+
+  globalIDVariable = this.sharedIDSubject.asObservable()
+
+  setIDVariable(value: number): void {
+    this.sharedIDSubject.next(value)
+  }
+
+  getIDVariable(): number {
+    return this.sharedIDSubject.value
+  }
 }

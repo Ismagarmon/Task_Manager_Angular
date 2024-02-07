@@ -63,6 +63,8 @@ export class SigninComponent {
       this.state.setEmailVariable(user.email)
       this.state.globalPuntuacionVariable.subscribe()
       this.state.setPuntuacionVariable(user.puntuacion)
+      this.state.globalIDVariable.subscribe()
+      this.state.setIDVariable(user._id)
     })
   }
 }

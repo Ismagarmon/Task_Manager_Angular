@@ -27,7 +27,7 @@ export class CardgameComponent implements OnDestroy {
 
   private puntuacion: number = 0
 
-  private tiempo: number = 60
+  public tiempo: number = 60
 
   private interval: any
 
@@ -40,7 +40,9 @@ export class CardgameComponent implements OnDestroy {
       this.cardslist = data
     })
     this.state.globalPuntuacionVariable.subscribe()
+    this.state.globalIDVariable.subscribe()
     this.puntuacionAuxiliar = this.state.getPuntuacionVariable()
+    console.log(this.puntuacionAuxiliar)
   }
 
   public changehidden(btn: HTMLButtonElement): void {
@@ -77,7 +79,7 @@ export class CardgameComponent implements OnDestroy {
       let img = document.createElement('img')
       img.alt = ''
       img.style.cssText =
-        `
+      `
       width: 100%;
       height: 100%
       `
@@ -200,15 +202,11 @@ export class CardgameComponent implements OnDestroy {
 
     if (this.puntuacionAuxiliar < this.puntuacion) {
       this.puntuacionAuxiliar = this.puntuacion
-      const jsonstorage = sessionStorage.getItem('Usuario')
-      const userJSON = JSON.parse(jsonstorage!)
 
-      userJSON.puntuacion = this.puntuacion
-      const updatedJSON = JSON.stringify(userJSON)
-      sessionStorage.setItem('Usuario', updatedJSON)
-
+      this.state.setPuntuacionVariable(this.puntuacionAuxiliar)
+      
       const user: UpUser = {
-        id: userJSON._id,
+        id: this.state.getIDVariable(),
         puntuacion: this.puntuacion
       }
 

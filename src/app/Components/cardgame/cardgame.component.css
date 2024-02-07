@@ -57,3 +57,10 @@ button {
 button:active {
     transform: translateY(4px);
 }
+
+#timer {
+    display: inline-block;
+    margin-left: 20rem;
+    font-size: 2rem;
+    margin-top: 2rem;
+}

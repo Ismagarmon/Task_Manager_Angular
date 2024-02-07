@@ -14,17 +14,24 @@ export class MenuComponent {
 
   public user: string = ""
 
-  constructor(private router:Router, public state: MenusvisiService){
-    this.state.globalNameVariable.subscribe( (value) => {
+  constructor(private router: Router, public state: MenusvisiService) {
+    this.state.globalNameVariable.subscribe((value) => {
       if (this.user !== value) {
-          this.user = this.state.getNameVariable()
+        this.user = this.state.getNameVariable()
       }
     })
   }
 
   public logout(): void {
     this.state.toggleMenuPrimario()
-    sessionStorage.clear()
+    this.state.globalNameVariable.subscribe()
+    this.state.setNameVariable('')
+    this.state.globalEmailVariable.subscribe()
+    this.state.setEmailVariable('')
+    this.state.globalPuntuacionVariable.subscribe()
+    this.state.setPuntuacionVariable(0)
+    this.state.globalIDVariable.subscribe()
+    this.state.setIDVariable(0)
     this.router.navigate(['home'])
   }
 

@@ -46,8 +46,10 @@
 
         </tr>
         }
-        } @else {
-        <p>Como no eres el adminstrador no puedes obtener la lista de todos los usuarios.</p>
-        }
+        } 
     </tbody>
 </table>
+
+@if (email !== 'ismagarmon3@gmail.com') {
+    <p>Como no eres el adminstrador no puedes obtener la lista de todos los usuarios.</p>
+}
