@@ -7,6 +7,7 @@ import { Message } from '../interface/message';
 import { SignInUser } from '../interface/sign-in-user';
 import { Listmusic } from '../interface/listmusic';
 import { Card } from '../interface/card';
+import { UpUser } from '../interface/up-user';
 
 
 
@@ -31,12 +32,10 @@ export class LoginService {
     return this.http.post(this.URL_LOCALHOST+'/api/users', user)
   }
 
-  
   public findEmail(email: string): Observable<Usuario> {
 
     return this.http.get<Usuario>(this.URL_LOCALHOST + '/api/users/email/' + `${email}`)
   }
-
   
   public deleteUser(id: number) {
 
@@ -63,5 +62,9 @@ export class LoginService {
 
   public getcards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.URL_LOCALHOST + '/cards/cartas')
+  }
+
+  public updateUser(user: UpUser): Observable<UpUser> {
+    return this.http.put<UpUser>(this.URL_LOCALHOST + '/api/userupd/points/', user )
   }
 }

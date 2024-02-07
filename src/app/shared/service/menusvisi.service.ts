@@ -63,4 +63,17 @@ export class MenusvisiService {
   setSharedVariable(value: boolean): void {
     this.sharedVariableSubject.next(value)
   }
+
+  //------------------------------------------------------------------------
+  private sharedNameSubject = new BehaviorSubject<string>('')
+
+  globalNameVariable = this.sharedNameSubject.asObservable()
+
+  setNameVariable(value: string): void {
+    this.sharedNameSubject.next(value)
+  }
+
+  getNameVariable(): string {
+    return this.sharedNameSubject.value
+  }
 }

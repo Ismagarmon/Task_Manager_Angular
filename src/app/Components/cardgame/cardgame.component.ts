@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserpointsComponent } from './userpoints/userpoints.component';
 import { Card } from '../../shared/interface/card';
 import { LoginService } from '../../shared/service/apirest.service';
+import { UpUser } from '../../shared/interface/up-user';
 
 @Component({
   selector: 'app-cardgame',
@@ -11,22 +12,42 @@ import { LoginService } from '../../shared/service/apirest.service';
   templateUrl: './cardgame.component.html',
   styleUrl: './cardgame.component.css'
 })
-export class CardgameComponent {
+export class CardgameComponent implements OnInit, OnDestroy {
 
   public hidden: Boolean = false
 
-  public cardslist: Card[] = []
+  private cardslist: Card[] = []
 
-  public arraycompro: number[] = []
+  private arraycompro: number[] = []
+
+  private arrayimg: HTMLImageElement[] = []
+
+  private puntos: number = 0
+
+  private puntuacion: number = 0
+
+  private tiempo: number = 60
+
+  private interval: any
+
+  public IsMatch: string = 'false'
+
+  private puntuacionAuxiliar: number = 0
 
   constructor(private cards: LoginService) {
     this.cards.getcards().subscribe((data: Card[]) => {
       this.cardslist = data
-      console.log(this.cardslist)
     })
 
   }
 
+  ngOnInit(): void {
+    const jsonstorage = sessionStorage.getItem('Usuario')
+    const userJSON = JSON.parse(jsonstorage!)
+
+    userJSON.puntuacion = this.puntuacionAuxiliar
+    console.log(this.puntuacionAuxiliar)
+  }
 
   public changehidden(btn: HTMLButtonElement): void {
     this.hidden = !this.hidden
@@ -37,7 +58,19 @@ export class CardgameComponent {
     }
   }
 
+  private TimeReset(): void {
+    this.tiempo = 60
+  }
+
   public empezar(tablero: HTMLDivElement): void {
+
+    clearInterval(this.interval)
+    this.TimeReset()
+
+    tablero.innerHTML = ''
+    this.setTimer(tablero)
+    this.IsMatch = 'true'
+
     this.cardslist.forEach((card) => {
       let div = document.createElement('div')
       div.id = card.id.toString()
@@ -46,45 +79,55 @@ export class CardgameComponent {
       height: 100%;
       border: 5px solid black
       `
-      div.addEventListener('click', () => {
-        this.comprobar(parseInt(div.id),div)
-      })
 
       let img = document.createElement('img')
-      img.alt = 'Imagen'
-      img.src = card.url
-      img.style.cssText = `
-      width: 98%;
-      height: 98%
+      img.alt = ''
+      img.style.cssText =
+        `
+      width: 100%;
+      height: 100%
       `
+      img.src = card.url
+      setTimeout(() => {
+        img.src = card.q
+      }, 2000)
+
+      div.addEventListener('click', () => this.Voltear(div, img))
       div.append(img)
 
       tablero.append(div)
     })
   }
 
-  public comprobar(id: number, div: HTMLDivElement) {
-    document.getElementById(id.toString())!.style.cssText = `
-    width: 100%;
-    height: 100%;
-    border: 5px solid purple
-    `
+  private comprobar(id: number, div: HTMLDivElement, img: HTMLImageElement) {
+
+    this.arrayimg.push(img)
     this.arraycompro.push(id)
     if (this.arraycompro.length == 2) {
       if (this.arraycompro[0] == this.arraycompro[1] / 2 || this.arraycompro[0] / 2 == this.arraycompro[1]) {
-        
 
-        document.getElementById(this.arraycompro[0].toString())!.style.opacity = '0'
-        document.getElementById(this.arraycompro[1].toString())!.style.opacity = '0'
 
-        document.getElementById(this.arraycompro[0].toString())!.removeEventListener('click', () => {
-          this.comprobar(parseInt(div.id),div)
-        })
-        document.getElementById(this.arraycompro[1].toString())!.removeEventListener('click', () => {
-          this.comprobar(parseInt(div.id),div)
-        })
+        document.getElementById(this.arraycompro[0].toString())!.classList.add('staged')
+        document.getElementById(this.arraycompro[1].toString())!.classList.add('staged')
+
+
+        document.getElementById(this.arraycompro[0].toString())!.removeEventListener('click', () => this.Voltear(div, img))
+        document.getElementById(this.arraycompro[1].toString())!.removeEventListener('click', () => this.Voltear(div, img))
+
+        setTimeout(() => {
+          this.arrayimg.forEach(img => {
+            img.src = 'https://media.istockphoto.com/id/1308043708/es/vector/pared-de-ladrillo-blanco-textura-de-fondo-sin-costuras-superficie-realista.jpg?s=612x612&w=0&k=20&c=QSVjLHWvWqtEjjrqRBEU1QO7s4xS4su4TYZYqyKyK0g='
+          })
+          this.arrayimg = []
+        }, 500)
 
         this.arraycompro = []
+
+        this.puntos++
+
+        if (this.puntos == 6) {
+          this.ganar()
+        }
 
       } else {
         document.getElementById(this.arraycompro[0].toString())!.style.cssText = `
@@ -92,14 +135,106 @@ export class CardgameComponent {
         height: 100%;
         border: 5px solid black
         `
+
         document.getElementById(this.arraycompro[1].toString())!.style.cssText = `
         width: 100%;
         height: 100%;
         border: 5px solid black
         `
+        setTimeout(() => {
+          this.arrayimg.forEach(img => {
+            img.src = 'https://media.istockphoto.com/id/1162198273/es/vector/dise%C3%B1o-de-ilustraci%C3%B3n-vectorial-plana-icono-de-signo-de-interrogaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=ZP_KrHAiZiMLttztdGIegaJlNhBYCvsyr0S9-irTTTM='
+          })
+          this.arrayimg = []
+        }, 500)
 
         this.arraycompro = []
       }
     }
+  }
+
+  private Voltear(div: HTMLDivElement, img: HTMLImageElement): void {
+    if (div.classList.contains('staged')) {
+      alert('No vas a hacer nada haciendo click en esta carta')
+    }
+    else {
+      document.getElementById(div.id.toString())!.style.cssText =
+        `
+      width: 100%;
+      height: 100%;
+      border: 5px solid purple
+      `
+
+      let cardobjet = this.cardslist.find(card => card.id === parseInt(div.id))
+
+      img.src = cardobjet!.url
+
+      this.comprobar(parseInt(div.id), div, img)
+    }
+  }
+
+  private ganar(): void {
+    alert('Has ganado')
+    let time: number = this.tiempo
+    this.actualizarpts(time)
+    clearInterval(this.interval)
+    this.tiempo = 60
+    this.puntos = 0
+    
+  }
+
+  private perder(div: HTMLDivElement): void {
+    alert('Has perdido')
+    clearInterval(this.interval)
+    this.tiempo = 60
+    div.innerHTML = ''
+    this.puntos = 0
+    this.IsMatch = 'false'
+  }
+
+  private setTimer(div: HTMLDivElement): void {
+    this.interval = setInterval(() => {
+      this.tiempo--
+      if (this.tiempo == 0) {
+        this.perder(div)
+      }
+    }, 1000)
+  }
+
+  private actualizarpts(time: number): void {
+    this.puntuacion = 24 * time
+
+    if (this.puntuacionAuxiliar < this.puntuacion) {
+      this.puntuacionAuxiliar = this.puntuacion
+      const jsonstorage = sessionStorage.getItem('Usuario')
+      const userJSON = JSON.parse(jsonstorage!)
+
+      userJSON.puntuacion = this.puntuacion
+      const updatedJSON = JSON.stringify(userJSON)
+      sessionStorage.setItem('Usuario', updatedJSON)
+
+      const user: UpUser = {
+        id: userJSON._id,
+        puntuacion: this.puntuacion
+      }
+
+      this.cards.updateUser(user).subscribe({
+        complete: () => {
+          alert('Se ha actualizado correctamente al usuario.')
+          this.puntuacion = 0
+          this.IsMatch = 'false'
+        },
+        error: (err) => {
+          alert(err)
+        },
+      })
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.tiempo = 0
+    this.puntuacion = 0
+    clearInterval(this.interval)
   }
 }

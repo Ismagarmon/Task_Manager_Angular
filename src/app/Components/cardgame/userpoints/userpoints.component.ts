@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../shared/interface/usuario';
 import { LoginService } from '../../../shared/service/apirest.service';
@@ -10,14 +10,23 @@ import { LoginService } from '../../../shared/service/apirest.service';
   templateUrl: './userpoints.component.html',
   styleUrl: './userpoints.component.css'
 })
-export class UserpointsComponent implements OnInit {
+export class UserpointsComponent implements OnInit, OnChanges {
 
   public lista_usuario: Usuario[] = []
+
+  @Input() 
+  public IsMatch: string = 'false'
 
   constructor(private users: LoginService) {}
 
   ngOnInit(): void {
     this.users.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response})
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['IsMatch']){
+      this.users.getUsers().subscribe((response: Usuario[]) => {this.lista_usuario = response})
+    }
   }
 
   public cambiarcolortabla(): void {

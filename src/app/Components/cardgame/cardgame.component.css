@@ -1,3 +1,11 @@
+.seleccionada {
+    border: 5px solid purple;
+}
+
+.staged {
+    opacity: 0;
+}
+
 .ctn {
     position: relative;
     width: 100%;
@@ -49,4 +57,3 @@ button {
 button:active {
     transform: translateY(4px);
 }
-

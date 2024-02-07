@@ -1,4 +1,5 @@
 export interface Card {
     id: number,
-    url: string
+    url: string,
+    q: string
 }

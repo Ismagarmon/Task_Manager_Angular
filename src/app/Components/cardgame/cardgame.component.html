@@ -1,12 +1,12 @@
 <div [ngClass]="'ctn'">
   <button (click)="changehidden(btn)" #btn>Mostrar resultados</button>
   <button (click)="empezar(tablero)">Empezar juego</button>
-  <div [ngClass]="'grid abs'" #tablero>
+  <div class="grid abs" #tablero>
 
   </div>
   <div [ngClass]="'punt'">
     @defer (when hidden) {
-      <app-userpoints #applist></app-userpoints>
+      <app-userpoints #applist IsMatch={{IsMatch}}></app-userpoints>
       <p (mouseenter)="applist.cambiarcolortabla()" class="parr">Cambiar borde de la tabla</p>
     } @error {
       <p>Problemas con el servidor</p>

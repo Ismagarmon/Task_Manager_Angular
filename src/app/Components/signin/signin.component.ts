@@ -6,6 +6,7 @@ import { ValidacionesInputs } from '../../shared/class/validaciones-inputs'
 import { LoginService } from '../../shared/service/apirest.service'
 import { SignInUser } from '../../shared/interface/sign-in-user'
 import { MenusvisiService } from '../../shared/service/menusvisi.service'
+import { Usuario } from '../../shared/interface/usuario'
 
 @Component({
   selector: 'app-signin',
@@ -57,8 +58,9 @@ export class SigninComponent {
   private getUserToSesionStorage(email: string ): void {
     this.login.findEmail(email).subscribe(
       {
-        next: (data) => {
-          sessionStorage.setItem('Usuario', JSON.stringify(data))
+        next: (data: Usuario) => {
+          this.state.globalVariable.subscribe()
+          this.state.setNameVariable(data.nombre)
         }
       }
     )

@@ -167,15 +167,10 @@
         height: 2.5rem;
     }
 
-    #menu li:nth-child(2) {
-        cursor: default;
-        width: 14rem;
-    }
-
     #menu li:nth-child(3),
     #menu li:nth-child(4),
     #menu li:nth-child(5),
-    #menu li:nth-child(6) {
+    #menu li:nth-child(2) {
         transition: all 0.3s;
         border-radius: 5px;
         margin-left: 1rem;
@@ -184,7 +179,7 @@
     #menu li:nth-child(3) p,
     #menu li:nth-child(4) p,
     #menu li:nth-child(5) p,
-    #menu li:nth-child(6) p {
+    #menu li:nth-child(2) p {
         margin-left: 10%;
         display: inline-block;
     }
@@ -192,14 +187,14 @@
     #menu li:nth-child(3) i,
     #menu li:nth-child(4) i,
     #menu li:nth-child(5) i,
-    #menu li:nth-child(6) i {
+    #menu li:nth-child(2) i {
         margin-left: 10%;
     }
 
     #menu li:nth-child(3):hover,
     #menu li:nth-child(4):hover,
     #menu li:nth-child(5):hover,
-    #menu li:nth-child(6):hover {
+    #menu li:nth-child(2):hover {
         background-color: gray;
     }
 
