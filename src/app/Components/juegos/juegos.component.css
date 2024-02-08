@@ -32,3 +32,8 @@
     align-items: center;
 }
 
+.li {
+    border: 1px solid purple;
+    background-color: black;
+    color: white;
+}

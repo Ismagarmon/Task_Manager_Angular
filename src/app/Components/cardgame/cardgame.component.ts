@@ -35,6 +35,8 @@ export class CardgameComponent implements OnDestroy {
 
   private puntuacionAuxiliar: number = 0
 
+  private array_numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
   constructor(private cards: LoginService, public state: MenusvisiService) {
     this.cards.getcards().subscribe((data: Card[]) => {
       this.cardslist = data
@@ -42,7 +44,7 @@ export class CardgameComponent implements OnDestroy {
     this.state.globalPuntuacionVariable.subscribe()
     this.state.globalIDVariable.subscribe()
     this.puntuacionAuxiliar = this.state.getPuntuacionVariable()
-    console.log(this.puntuacionAuxiliar)
+    
   }
 
   public changehidden(btn: HTMLButtonElement): void {
@@ -67,9 +69,10 @@ export class CardgameComponent implements OnDestroy {
     this.setTimer(tablero)
     this.IsMatch = 'true'
 
-    this.cardslist.forEach((card) => {
+    this.array_numbers.sort(function () { return Math.random() - 0.5 })
+    this.array_numbers.forEach((number) => {
       let div = document.createElement('div')
-      div.id = card.id.toString()
+      div.id = this.cardslist[number].id.toString()
       div.style.cssText = `
       width: 100%;
       height: 100%;
@@ -83,9 +86,9 @@ export class CardgameComponent implements OnDestroy {
       width: 100%;
       height: 100%
       `
-      img.src = card.url
+      img.src = this.cardslist[number].url
       setTimeout(() => {
-        img.src = card.q
+        img.src = this.cardslist[number].q
       }, 2000)
 
       div.addEventListener('click', () => this.Voltear(div, img))
@@ -93,9 +96,10 @@ export class CardgameComponent implements OnDestroy {
 
       tablero.append(div)
     })
+
   }
 
-  private comprobar(id: number, div: HTMLDivElement, img: HTMLImageElement) {
+  private comprobar(id: number, img: HTMLImageElement) {
 
     this.arrayimg.push(img)
     this.arraycompro.push(id)
@@ -160,7 +164,7 @@ export class CardgameComponent implements OnDestroy {
 
       img.src = cardobjet!.url
 
-      this.comprobar(parseInt(div.id), div, img)
+      this.comprobar(parseInt(div.id), img)
     }
   }
 

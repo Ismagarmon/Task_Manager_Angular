@@ -49,3 +49,11 @@ form button {
 form button:active {
     transform: translateY(4px);
 }
+
+.correcto {
+    border: 1px solid green
+}
+
+.incorrecto {
+    border: 1px solid red
+}

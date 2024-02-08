@@ -17,6 +17,14 @@ import { Usuario } from '../../shared/interface/usuario'
 })
 export class SigninComponent {
 
+  public IsMatchEmail: boolean = false
+
+  public IsMatchPW: boolean = false
+
+  public IEmail: string = ""
+
+  public IPW: string = ""
+
   constructor(private router:Router,private fb: FormBuilder, private login: LoginService, public state: MenusvisiService){
 
   }
@@ -66,5 +74,33 @@ export class SigninComponent {
       this.state.globalIDVariable.subscribe()
       this.state.setIDVariable(user._id)
     })
+  }
+
+  public comprobarPW(): void {
+
+    const regexpassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/
+
+    if(regexpassword.test(this.IPW)){
+      this.IsMatchPW = true
+    } else {
+      this.IsMatchPW = false
+    }
+
+    console.log(this.IsMatchPW)
+  }
+
+  public comprobarEmail(): void {
+
+    const regexcorreo = /^[a-zA-Z0-9À-ÿ\u00f1\u00d1]{1,30}@gmail\.com$/
+    const regexcorreo1 = /^[a-zA-Z0-9À-ÿ\u00f1\u00d1]{1,30}@hotmail\.com$/
+    const regexcorreo2 = /^[a-zA-Z0-9À-ÿ\u00f1\u00d1]{1,30}@yahoo\.es$/
+
+    if(regexcorreo.test(this.IEmail) || regexcorreo1.test(this.IEmail) || regexcorreo2.test(this.IEmail)){
+      this.IsMatchEmail = true
+    } else {
+      this.IsMatchEmail = false
+    }
+
+    console.log(this.IsMatchEmail)
   }
 }
