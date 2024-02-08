@@ -102,13 +102,8 @@ export class CardgameComponent implements OnDestroy {
     if (this.arraycompro.length == 2) {
       if (this.arraycompro[0] == this.arraycompro[1] / 2 || this.arraycompro[0] / 2 == this.arraycompro[1]) {
 
-
         document.getElementById(this.arraycompro[0].toString())!.classList.add('staged')
         document.getElementById(this.arraycompro[1].toString())!.classList.add('staged')
-
-
-        document.getElementById(this.arraycompro[0].toString())!.removeEventListener('click', () => this.Voltear(div, img))
-        document.getElementById(this.arraycompro[1].toString())!.removeEventListener('click', () => this.Voltear(div, img))
 
         setTimeout(() => {
           this.arrayimg.forEach(img => {
