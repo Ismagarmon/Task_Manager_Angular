@@ -14,6 +14,8 @@ export class MenuComponent {
 
   public user: string = ""
 
+  private IsMSVisible: boolean = true
+
   constructor(private router: Router, public state: MenusvisiService) {
     this.state.globalNameVariable.subscribe((value) => {
       if (this.user !== value) {
@@ -33,10 +35,6 @@ export class MenuComponent {
     this.state.globalIDVariable.subscribe()
     this.state.setIDVariable(0)
     this.router.navigate(['home'])
-  }
-
-  public toggleMenu(): void {
-    this.state.mostrarMenuSecundario()
   }
 
 }

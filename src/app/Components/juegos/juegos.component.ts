@@ -12,11 +12,16 @@ import { MenusvisiService } from '../../shared/service/menusvisi.service'
 })
 export class JuegosComponent {
 
-  constructor(public state: MenusvisiService){
+  public cantante: string = "NCS"
+
+  constructor(public state: MenusvisiService, private router:Router){
   }
 
-  public toggleMenu(): void {
-    this.state.toggleMenuSecundario()
+  public cardgame(): void {
+    this.router.navigate(['/juegos/cardgame/'])
   }
 
+  public MAP(): void {
+    this.router.navigate(['/juegos/musicplayer/', this.cantante])
+  }
 }

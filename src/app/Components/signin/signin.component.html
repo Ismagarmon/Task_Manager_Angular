@@ -1,10 +1,9 @@
-<form [formGroup]="formularioLogIn"
-    (ngSubmit)="entrar(email.value, password.value)">
+<form (ngSubmit)="entrar(email.value, password.value)">
 
-    <input type="text" placeholder="Escribir un email" formControlName="email" #email [ngClass]="IsMatchEmail ? 'correcto' : 'incorrecto'" [(ngModel)]="IEmail" (input)="comprobarEmail()">
+    <input type="text" placeholder="Escribir un email"  #email [ngClass]="IsMatchEmail ? 'correcto' : 'incorrecto'" [(ngModel)]="IEmail" (input)="comprobarEmail()" [ngModelOptions]="{standalone: true}">
 
-    <input type="password" placeholder="Escribir una contraseña" formControlName="password" #password [ngClass]="IsMatchPW ? 'correcto' : 'incorrecto'" [(ngModel)]="IPW" (input)="comprobarPW()">
+    <input type="password" placeholder="Escribir una contraseña" #password [ngClass]="IsMatchPW ? 'correcto' : 'incorrecto'" [(ngModel)]="IPassWord" (input)="comprobarPW()" [ngModelOptions]="{standalone: true}">
 
-    <button type="submit" [disabled]="formularioLogIn.invalid">Entrar</button>
+    <button type="submit" #submit>Entrar</button>
 
 </form>

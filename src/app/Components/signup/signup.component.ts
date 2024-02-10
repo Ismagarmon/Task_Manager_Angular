@@ -36,7 +36,7 @@ export class SignupComponent {
     password: new FormControl('', [Validators.required, ValidacionesInputs.regexpassword]),
     /* base: new FormControl('hexadecimal'),
     potencia: new FormControl('3'),*/
-    largo: new FormControl(true) 
+    notificaciones: new FormControl(false) 
   })
 
   public insertarn(nombre: string, apellidos: string, email: string, password: string): void {

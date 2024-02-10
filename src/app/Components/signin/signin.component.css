@@ -36,6 +36,7 @@ form input {
     height: 2rem;
     width: 70%;
     padding: 10px;
+    outline: none;
 }
 
 form button {

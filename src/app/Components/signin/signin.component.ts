@@ -1,8 +1,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
-import { ValidacionesInputs } from '../../shared/class/validaciones-inputs'
+import { FormsModule } from '@angular/forms'
 import { LoginService } from '../../shared/service/apirest.service'
 import { SignInUser } from '../../shared/interface/sign-in-user'
 import { MenusvisiService } from '../../shared/service/menusvisi.service'
@@ -11,7 +10,7 @@ import { Usuario } from '../../shared/interface/usuario'
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
@@ -23,16 +22,11 @@ export class SigninComponent {
 
   public IEmail: string = ""
 
-  public IPW: string = ""
+  public IPassWord: string = ""
 
-  constructor(private router:Router,private fb: FormBuilder, private login: LoginService, public state: MenusvisiService){
+  constructor(private router:Router, private login: LoginService, public state: MenusvisiService){
 
   }
-
-  public formularioLogIn = this.fb.group({
-    email: new FormControl('', [Validators.required, ValidacionesInputs.regexemail]),
-    password: new FormControl('', [Validators.required, ValidacionesInputs.regexpassword]), 
-  })
 
   public entrar(email: string, password: string): void {
 
@@ -80,13 +74,11 @@ export class SigninComponent {
 
     const regexpassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/
 
-    if(regexpassword.test(this.IPW)){
+    if(regexpassword.test(this.IPassWord)){
       this.IsMatchPW = true
     } else {
       this.IsMatchPW = false
     }
-
-    console.log(this.IsMatchPW)
   }
 
   public comprobarEmail(): void {
@@ -100,7 +92,5 @@ export class SigninComponent {
     } else {
       this.IsMatchEmail = false
     }
-
-    console.log(this.IsMatchEmail)
   }
 }

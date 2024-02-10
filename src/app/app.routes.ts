@@ -14,13 +14,15 @@ export const routes: Routes = [
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
     {
-        path: 'juegos', component: JuegosComponent, 
+        path: 'juegos', component: JuegosComponent /*
         children:
             [
                 { path: 'musicplayer/:cantante', component: MusicplayerComponent },
                 { path: 'cardgame', component: CardgameComponent }
-            ]
+            ] */
     },
+    { path: 'juegos/musicplayer/:cantante', component: MusicplayerComponent },
+    { path: 'juegos/cardgame', component: CardgameComponent },
     { path: '404', component: PagenotfoundComponent },
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },

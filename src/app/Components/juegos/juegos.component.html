@@ -1,16 +1,12 @@
-@if(state.menuSecundarioVisible$() | async){
-    <ul class="menu flex" #menus id="menusecundario">
-        <li [ngClass]="'flex-v'" routerLink="/juegos/cardgame" routerLinkActive="active" class="CD" (click)="toggleMenu()">
-            <i class='bx bxs-credit-card-front' style='color:#ffffff'></i>
-            <p>CardGame</p>
-        </li>
-        <li [ngClass]="'flex-v li'" routerLink="/juegos/musicplayer/NCS" routerLinkActive="active" class="MP" (click)="toggleMenu()">
-            <i class='bx bxs-music' style='color:#ffffff'></i>
-            <p>MusicPlayer</p>
-        </li>
-    </ul>
-} @else {
-
-}
+<ul class="menu flex" #menus id="menusecundario">
+    <li [ngClass]="'flex-v'" routerLink="/juegos/cardgame" class="CD" (click)="cardgame()">
+        <i class='bx bxs-credit-card-front' style='color:#ffffff'></i>
+        <p>CardGame</p>
+    </li>
+    <li [ngClass]="'flex-v li'" (click)="MAP()" class="MP">
+        <i class='bx bxs-music' style='color:#ffffff'></i>
+        <p>MusicPlayer</p>
+    </li>
+</ul>
 
 <router-outlet></router-outlet>

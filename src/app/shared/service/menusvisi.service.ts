@@ -23,24 +23,6 @@ export class MenusvisiService {
   }
 
   //------------------------------------------------------------------------
-  private EstadoMenuSecundario = new BehaviorSubject<boolean>(false)
-  mostrarMenuSecundario(): void {
-    this.EstadoMenuSecundario.next(true)
-  }
-  
-  mostrarStateMS(): Boolean {
-    return this.EstadoMenuSecundario.value
-  }
-
-  menuSecundarioVisible$(): Observable<boolean> {
-    return this.EstadoMenuSecundario.asObservable()
-  }
-
-  toggleMenuSecundario(): void {
-    this.EstadoMenuSecundario.next(!this.EstadoMenuSecundario.value)
-  }
-
-  //------------------------------------------------------------------------
   private EstadoMenuPrimario = new BehaviorSubject<boolean>(false)
 
   mostrarMenuPrimario(): Boolean {
@@ -115,4 +97,31 @@ export class MenusvisiService {
   getIDVariable(): number {
     return this.sharedIDSubject.value
   }
+
+  //------------------------------------------------------------------------
+  private MS = new BehaviorSubject<boolean>(false)
+
+  MSglobal = this.MS.asObservable()
+
+  setMSVariable(value: boolean): void {
+    this.MS.next(value)
+  }
+
+  getMSVariable(): boolean {
+    return this.MS.value
+  }
+
+  //------------------------------------------------------------------------
+  private Count = new BehaviorSubject<number>(0)
+
+  Countglobal = this.MS.asObservable()
+
+  setCount(value: number): void {
+    this.Count.next(value)
+  }
+
+  getCount(): number {
+    return this.Count.value
+  }
+  
 }
