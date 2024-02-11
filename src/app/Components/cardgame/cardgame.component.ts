@@ -5,11 +5,12 @@ import { Card } from '../../shared/interface/card';
 import { LoginService } from '../../shared/service/apirest.service';
 import { UpUser } from '../../shared/interface/up-user';
 import { MenusvisiService } from '../../shared/service/menusvisi.service';
+import { CardsComponent } from './cards/cards.component';
 
 @Component({
   selector: 'app-cardgame',
   standalone: true,
-  imports: [CommonModule, UserpointsComponent],
+  imports: [CommonModule, UserpointsComponent, CardsComponent],
   templateUrl: './cardgame.component.html',
   styleUrl: './cardgame.component.css'
 })
@@ -17,11 +18,11 @@ export class CardgameComponent implements OnDestroy {
 
   public hidden: Boolean = false
 
-  private cardslist: Card[] = []
+  public cardslist: Card[] = []
 
   private arraycompro: number[] = []
 
-  private arrayimg: HTMLImageElement[] = []
+  private nombre: string[] = []
 
   private puntos: number = 0
 
@@ -35,7 +36,7 @@ export class CardgameComponent implements OnDestroy {
 
   private puntuacionAuxiliar: number = 0
 
-  private array_numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  public array_numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
   constructor(private cards: LoginService, public state: MenusvisiService) {
     this.cards.getcards().subscribe((data: Card[]) => {
@@ -70,53 +71,19 @@ export class CardgameComponent implements OnDestroy {
     this.IsMatch = 'true'
 
     this.array_numbers.sort(function () { return Math.random() - 0.5 })
-    this.array_numbers.forEach((number) => {
-      let div = document.createElement('div')
-      div.id = this.cardslist[number].id.toString()
-      div.style.cssText = `
-      width: 100%;
-      height: 100%;
-      border: 5px solid black
-      `
 
-      let img = document.createElement('img')
-      img.alt = ''
-      img.style.cssText =
-      `
-      width: 100%;
-      height: 100%
-      `
-      img.src = this.cardslist[number].url
-      setTimeout(() => {
-        img.src = this.cardslist[number].q
-      }, 2000)
-
-      div.addEventListener('click', () => this.Voltear(div, img))
-      div.append(img)
-
-      tablero.append(div)
-    })
+    
 
   }
 
-  private comprobar(id: number, img: HTMLImageElement) {
+  public comprobar(nombre: string) {
 
-    this.arrayimg.push(img)
-    this.arraycompro.push(id)
-    if (this.arraycompro.length == 2) {
-      if (this.arraycompro[0] == this.arraycompro[1] / 2 || this.arraycompro[0] / 2 == this.arraycompro[1]) {
+    this.nombre.push(nombre)
 
-        document.getElementById(this.arraycompro[0].toString())!.classList.add('staged')
-        document.getElementById(this.arraycompro[1].toString())!.classList.add('staged')
+    if (this.nombre.length == 2) {
+      if (this.nombre[0] === this.nombre[1] || this.nombre[0] === this.nombre[1]) {
 
-        setTimeout(() => {
-          this.arrayimg.forEach(img => {
-            img.src = 'https://media.istockphoto.com/id/1308043708/es/vector/pared-de-ladrillo-blanco-textura-de-fondo-sin-costuras-superficie-realista.jpg?s=612x612&w=0&k=20&c=QSVjLHWvWqtEjjrqRBEU1QO7s4xS4su4TYZYqyKyK0g='
-          })
-          this.arrayimg = []
-        }, 500)
-
-        this.arraycompro = []
+        this.nombre = []
 
         this.puntos++
 
@@ -125,48 +92,13 @@ export class CardgameComponent implements OnDestroy {
         }
 
       } else {
-        document.getElementById(this.arraycompro[0].toString())!.style.cssText = `
-        width: 100%;
-        height: 100%;
-        border: 5px solid black
-        `
-
-        document.getElementById(this.arraycompro[1].toString())!.style.cssText = `
-        width: 100%;
-        height: 100%;
-        border: 5px solid black
-        `
-        setTimeout(() => {
-          this.arrayimg.forEach(img => {
-            img.src = 'https://media.istockphoto.com/id/1162198273/es/vector/dise%C3%B1o-de-ilustraci%C3%B3n-vectorial-plana-icono-de-signo-de-interrogaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=ZP_KrHAiZiMLttztdGIegaJlNhBYCvsyr0S9-irTTTM='
-          })
-          this.arrayimg = []
-        }, 500)
 
         this.arraycompro = []
       }
     }
   }
 
-  private Voltear(div: HTMLDivElement, img: HTMLImageElement): void {
-    if (div.classList.contains('staged')) {
-      alert('No vas a hacer nada haciendo click en esta carta')
-    }
-    else {
-      document.getElementById(div.id.toString())!.style.cssText =
-        `
-      width: 100%;
-      height: 100%;
-      border: 5px solid purple
-      `
-
-      let cardobjet = this.cardslist.find(card => card.id === parseInt(div.id))
-
-      img.src = cardobjet!.url
-
-      this.comprobar(parseInt(div.id), img)
-    }
-  }
+  
 
   private ganar(): void {
     alert('Has ganado')

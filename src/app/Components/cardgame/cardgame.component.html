@@ -3,7 +3,9 @@
   <button (click)="empezar(tablero)">Empezar juego</button>
   <p id="timer" >Timer: {{tiempo}}</p>
   <div class="grid abs" #tablero>
-
+    @for(number of array_numbers; track $index){
+      <app-cards nombre={{cardslist[number].nombre}} carta={{cardslist[number].url}} cartaInterrogacion={{cardslist[number].q}} (addstring)="comprobar($event)"></app-cards>
+    }
   </div>
   <div [ngClass]="'punt'">
     @defer (when hidden) {
