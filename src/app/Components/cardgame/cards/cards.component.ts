@@ -58,10 +58,11 @@ export class CardsComponent implements OnChanges, OnDestroy {
         this.state.removeNumberArrayCartasCorrectas()
         this.state.removeNumberArrayComprobacion()
         this.state.changenumber(0)
-        this.empezar()
         this.IsMatched = false
         this.IsSelected = false
         this.IsVisible = true
+        this.empezar()
+        
         console.log('Ha comenzado el juego')
       } else {
         clearInterval(this.interval)
