@@ -99,7 +99,7 @@ export class MenusvisiService {
   }
 
   //------------------------------------------------------------------------
-  private MS = new BehaviorSubject<boolean>(false)
+  private MS= new BehaviorSubject<boolean>(false)
 
   MSglobal = this.MS.asObservable()
 
@@ -111,17 +111,64 @@ export class MenusvisiService {
     return this.MS.value
   }
 
-  //------------------------------------------------------------------------
-  private Count = new BehaviorSubject<number>(0)
+  //----------------------------------------------------------------
+  // Aquí es donde van a estar todos los id que si haya acertado
+  private numberArraySubject= new BehaviorSubject<number[]>([])
 
-  Countglobal = this.MS.asObservable()
+  ArrayNumberCartasCorrectas = this.numberArraySubject.asObservable()
 
-  setCount(value: number): void {
-    this.Count.next(value)
+  addNumberToArrayCartasCorrectas(n: number) {
+    const currentArray = this.numberArraySubject.getValue()
+    const updatedArray = [...currentArray, n]
+    this.numberArraySubject.next(updatedArray)
   }
 
-  getCount(): number {
-    return this.Count.value
+  getNumberArrayCartasCorrectas(): number[] {
+    return this.numberArraySubject.value
   }
-  
+
+  removeNumberArrayCartasCorrectas(): void {
+    const currentArray = this.numberArraySubject.getValue()
+    currentArray.pop()
+    currentArray.pop()
+    this.numberArraySubject.next(currentArray)
+  }
+
+  //----------------------------------------------------------------
+  // Aquí voy a meter los id que voy a ir metiendo para comprobar si son iguales o no
+  private ComprobacionArray= new BehaviorSubject<number[]>([])
+
+  ArrayNumberGlobalComparacion = this.ComprobacionArray.asObservable()
+
+  addNumberToArrayComprobacion(n: number) {
+    const currentArray = this.ComprobacionArray.getValue()
+    const updatedArray = [...currentArray, n]
+    this.ComprobacionArray.next(updatedArray)
+  }
+
+  getNumberArrayComprobacion(): number[] {
+    return this.ComprobacionArray.value
+  }
+
+  removeNumberArrayComprobacion(): void {
+    const currentArray: number[] = []
+    this.ComprobacionArray.next(currentArray)
+  }
+
+  //----------------------------------------------------------------
+  private CantCartas= new BehaviorSubject<number>(0)
+
+  CantCartasGlobal = this.CantCartas.asObservable()
+
+  changenumber(n: number) {
+    this.CantCartas.next(n);
+  }
+
+  getCantCartas():number {
+    return this.CantCartas.value
+  }
+
+  reiniciarCantCartas(): void {
+    this.CantCartas.next(0)
+  }
 }

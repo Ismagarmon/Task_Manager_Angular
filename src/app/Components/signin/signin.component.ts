@@ -24,7 +24,7 @@ export class SigninComponent {
 
   public IPassWord: string = ""
 
-  constructor(private router:Router, private login: LoginService, public state: MenusvisiService){
+  constructor(private router:Router, private login: LoginService, private state: MenusvisiService){
 
   }
 

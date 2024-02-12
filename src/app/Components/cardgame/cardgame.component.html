@@ -3,13 +3,18 @@
   <button (click)="empezar(tablero)">Empezar juego</button>
   <p id="timer" >Timer: {{tiempo}}</p>
   <div class="grid abs" #tablero>
-    @for(number of array_numbers; track $index){
-      <app-cards nombre={{cardslist[number].nombre}} carta={{cardslist[number].url}} cartaInterrogacion={{cardslist[number].q}} (addstring)="comprobar($event)"></app-cards>
+    @defer(when IsVisibleCards) {
+      @for(number of array_numbers; track $index){
+        <app-cards IsPlaying={{IsPlaying}} paredblanca={{paredblanca}}  carta={{cardslist[number].url}} cartaInterrogacion={{cardslist[number].q}} id={{cardslist[number].id}}></app-cards>
+      }
+    } @error {
+      <p>Ha ocurrido un error</p>
     }
+    
   </div>
   <div [ngClass]="'punt'">
     @defer (when hidden) {
-      <app-userpoints #applist IsMatch={{IsMatch}}></app-userpoints>
+      <app-userpoints #applist IsMatch={{IsPlaying}}></app-userpoints>
       <p (mouseenter)="applist.cambiarcolortabla()" class="parr">Cambiar borde de la tabla</p>
     } @error {
       <p>Problemas con el servidor</p>

@@ -20,19 +20,19 @@ export class CardgameComponent implements OnDestroy {
 
   public cardslist: Card[] = []
 
-  private arraycompro: number[] = []
-
-  private nombre: string[] = []
-
-  private puntos: number = 0
+  public IsVisibleCards: boolean = false
 
   private puntuacion: number = 0
 
-  public tiempo: number = 60
+  public tiempo: number = 1000
 
   private interval: any
 
-  public IsMatch: string = 'false'
+  public IsPlaying: string = 'false'
+
+  private cc: number = 0
+
+  public paredblanca: string = 'https://images.unsplash.com/photo-1604147706283-d7119b5b822c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFyZWQlMjBibGFuY2F8ZW58MHx8MHx8fDA%3D'
 
   private puntuacionAuxiliar: number = 0
 
@@ -45,7 +45,14 @@ export class CardgameComponent implements OnDestroy {
     this.state.globalPuntuacionVariable.subscribe()
     this.state.globalIDVariable.subscribe()
     this.puntuacionAuxiliar = this.state.getPuntuacionVariable()
-    
+    this.state.CantCartasGlobal.subscribe((n) => {
+      if(this.cc != n){
+        this.cc = n
+        if(this.cc == 16){
+          this.ganar()
+        }
+      }
+    })
   }
 
   public changehidden(btn: HTMLButtonElement): void {
@@ -58,7 +65,7 @@ export class CardgameComponent implements OnDestroy {
   }
 
   private TimeReset(): void {
-    this.tiempo = 60
+    this.tiempo = 10000
   }
 
   public empezar(tablero: HTMLDivElement): void {
@@ -66,48 +73,22 @@ export class CardgameComponent implements OnDestroy {
     clearInterval(this.interval)
     this.TimeReset()
 
-    tablero.innerHTML = ''
     this.setTimer(tablero)
-    this.IsMatch = 'true'
+    this.IsPlaying = 'true'
 
     this.array_numbers.sort(function () { return Math.random() - 0.5 })
 
-    
+    this.IsVisibleCards = true
 
   }
-
-  public comprobar(nombre: string) {
-
-    this.nombre.push(nombre)
-
-    if (this.nombre.length == 2) {
-      if (this.nombre[0] === this.nombre[1] || this.nombre[0] === this.nombre[1]) {
-
-        this.nombre = []
-
-        this.puntos++
-
-        if (this.puntos == 6) {
-          this.ganar()
-        }
-
-      } else {
-
-        this.arraycompro = []
-      }
-    }
-  }
-
-  
 
   private ganar(): void {
+    this.state.changenumber(0)
     alert('Has ganado')
     let time: number = this.tiempo
     this.actualizarpts(time)
     clearInterval(this.interval)
     this.tiempo = 60
-    this.puntos = 0
-    
   }
 
   private perder(div: HTMLDivElement): void {
@@ -115,8 +96,7 @@ export class CardgameComponent implements OnDestroy {
     clearInterval(this.interval)
     this.tiempo = 60
     div.innerHTML = ''
-    this.puntos = 0
-    this.IsMatch = 'false'
+    this.IsPlaying = 'false'
   }
 
   private setTimer(div: HTMLDivElement): void {
@@ -145,7 +125,7 @@ export class CardgameComponent implements OnDestroy {
         complete: () => {
           alert('Se ha actualizado correctamente al usuario.')
           this.puntuacion = 0
-          this.IsMatch = 'false'
+          this.IsPlaying = 'false'
         },
         error: (err) => {
           alert(err)
