@@ -24,7 +24,7 @@ export class CardgameComponent implements OnDestroy {
 
   private puntuacion: number = 0
 
-  public tiempo: number = 1000
+  public tiempo: number = 60
 
   private interval: any
 
@@ -48,7 +48,7 @@ export class CardgameComponent implements OnDestroy {
     this.state.CantCartasGlobal.subscribe((n) => {
       if(this.cc != n){
         this.cc = n
-        if(this.cc == 16){
+        if(this.cc == 6){
           this.ganar()
         }
       }
@@ -65,7 +65,7 @@ export class CardgameComponent implements OnDestroy {
   }
 
   private TimeReset(): void {
-    this.tiempo = 10000
+    this.tiempo = 60
   }
 
   public empezar(tablero: HTMLDivElement): void {

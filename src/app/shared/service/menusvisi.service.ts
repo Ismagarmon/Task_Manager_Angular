@@ -10,104 +10,104 @@ export class MenusvisiService {
   //------------------------------------------------------------------------
   private EstadoIsPlaying = new BehaviorSubject<boolean>(false)
 
-  toggleIsPlaying(): void {
+  public toggleIsPlaying(): void {
     this.EstadoIsPlaying.next(!this.EstadoIsPlaying.value)
   }
 
-  showIsPlaying(): boolean {
+  public showIsPlaying(): boolean {
     return this.EstadoIsPlaying.value
   }
 
-  StateIsPlaying$(): Observable<boolean> {
+  public StateIsPlaying$(): Observable<boolean> {
     return this.EstadoIsPlaying.asObservable()
   }
 
   //------------------------------------------------------------------------
   private EstadoMenuPrimario = new BehaviorSubject<boolean>(false)
 
-  mostrarMenuPrimario(): Boolean {
+  public mostrarMenuPrimario(): Boolean {
     return this.EstadoMenuPrimario.value
   }
 
-  menuPrimarioVisible$(): Observable<boolean> {
+  public menuPrimarioVisible$(): Observable<boolean> {
     return this.EstadoMenuPrimario.asObservable()
   }
 
-  toggleMenuPrimario(): void {
+  public toggleMenuPrimario(): void {
     this.EstadoMenuPrimario.next(!this.EstadoMenuPrimario.value)
   }
 
   //------------------------------------------------------------------------
   private sharedVariableSubject = new BehaviorSubject<boolean>(false)
 
-  globalVariable = this.sharedVariableSubject.asObservable()
+  public globalVariable = this.sharedVariableSubject.asObservable()
 
-  setSharedVariable(value: boolean): void {
+  public setSharedVariable(value: boolean): void {
     this.sharedVariableSubject.next(value)
   }
 
   //------------------------------------------------------------------------
   private sharedNameSubject = new BehaviorSubject<string>('')
 
-  globalNameVariable = this.sharedNameSubject.asObservable()
+  public globalNameVariable = this.sharedNameSubject.asObservable()
 
-  setNameVariable(value: string): void {
+  public setNameVariable(value: string): void {
     this.sharedNameSubject.next(value)
   }
 
-  getNameVariable(): string {
+  public getNameVariable(): string {
     return this.sharedNameSubject.value
   }
 
   //------------------------------------------------------------------------
   private sharedEmailSubject = new BehaviorSubject<string>('')
 
-  globalEmailVariable = this.sharedEmailSubject.asObservable()
+  public globalEmailVariable = this.sharedEmailSubject.asObservable()
 
-  setEmailVariable(value: string): void {
+  public setEmailVariable(value: string): void {
     this.sharedEmailSubject.next(value)
   }
 
-  getEmailVariable(): string {
+  public getEmailVariable(): string {
     return this.sharedEmailSubject.value
   }
 
   //------------------------------------------------------------------------
   private sharedPuntuacionSubject = new BehaviorSubject<number>(0)
 
-  globalPuntuacionVariable = this.sharedPuntuacionSubject.asObservable()
+  public globalPuntuacionVariable = this.sharedPuntuacionSubject.asObservable()
 
-  setPuntuacionVariable(value: number): void {
+  public setPuntuacionVariable(value: number): void {
     this.sharedPuntuacionSubject.next(value)
   }
 
-  getPuntuacionVariable(): number {
+  public getPuntuacionVariable(): number {
     return this.sharedPuntuacionSubject.value
   }
 
   //------------------------------------------------------------------------
   private sharedIDSubject = new BehaviorSubject<number>(0)
 
-  globalIDVariable = this.sharedIDSubject.asObservable()
+  public globalIDVariable = this.sharedIDSubject.asObservable()
 
-  setIDVariable(value: number): void {
+  public setIDVariable(value: number): void {
     this.sharedIDSubject.next(value)
   }
 
-  getIDVariable(): number {
+  public getIDVariable(): number {
     return this.sharedIDSubject.value
   }
 
   //------------------------------------------------------------------------
   private MS= new BehaviorSubject<boolean>(false)
 
-  MSglobal = this.MS.asObservable()
+  public MSglobal = this.MS.asObservable()
 
-  setMSVariable(value: boolean): void {
+  public setMSVariable(value: boolean): void {
     this.MS.next(value)
   }
 
-  getMSVariable(): boolean {
+  public getMSVariable(): boolean {
     return this.MS.value
   }
 
@@ -115,19 +115,19 @@ export class MenusvisiService {
   // Aquí es donde van a estar todos los id que si haya acertado
   private numberArraySubject= new BehaviorSubject<number[]>([])
 
-  ArrayNumberCartasCorrectas = this.numberArraySubject.asObservable()
+  public ArrayNumberCartasCorrectas = this.numberArraySubject.asObservable()
 
-  addNumberToArrayCartasCorrectas(n: number) {
+  public addNumberToArrayCartasCorrectas(n: number) {
     const currentArray = this.numberArraySubject.getValue()
     const updatedArray = [...currentArray, n]
     this.numberArraySubject.next(updatedArray)
   }
 
-  getNumberArrayCartasCorrectas(): number[] {
+  public getNumberArrayCartasCorrectas(): number[] {
     return this.numberArraySubject.value
   }
 
-  removeNumberArrayCartasCorrectas(): void {
+  public removeNumberArrayCartasCorrectas(): void {
     const currentArray = this.numberArraySubject.getValue()
     currentArray.pop()
     currentArray.pop()
@@ -138,19 +138,19 @@ export class MenusvisiService {
   // Aquí voy a meter los id que voy a ir metiendo para comprobar si son iguales o no
   private ComprobacionArray= new BehaviorSubject<number[]>([])
 
-  ArrayNumberGlobalComparacion = this.ComprobacionArray.asObservable()
+  public ArrayNumberGlobalComparacion = this.ComprobacionArray.asObservable()
 
-  addNumberToArrayComprobacion(n: number) {
+  public addNumberToArrayComprobacion(n: number) {
     const currentArray = this.ComprobacionArray.getValue()
     const updatedArray = [...currentArray, n]
     this.ComprobacionArray.next(updatedArray)
   }
 
-  getNumberArrayComprobacion(): number[] {
+  public getNumberArrayComprobacion(): number[] {
     return this.ComprobacionArray.value
   }
 
-  removeNumberArrayComprobacion(): void {
+  public removeNumberArrayComprobacion(): void {
     const currentArray: number[] = []
     this.ComprobacionArray.next(currentArray)
   }
@@ -158,17 +158,23 @@ export class MenusvisiService {
   //----------------------------------------------------------------
   private CantCartas= new BehaviorSubject<number>(0)
 
-  CantCartasGlobal = this.CantCartas.asObservable()
+  public CantCartasGlobal = this.CantCartas.asObservable()
 
-  changenumber(n: number) {
-    this.CantCartas.next(n);
+  public changenumber(n: number) {
+    this.CantCartas.next(n)
   }
 
-  getCantCartas():number {
+  public addnumber(): void {
+    let numerocartas = this.CantCartas.value
+    numerocartas++
+    this.CantCartas.next(numerocartas)
+  }
+
+  public getCantCartas():number {
     return this.CantCartas.value
   }
 
-  reiniciarCantCartas(): void {
+  public reiniciarCantCartas(): void {
     this.CantCartas.next(0)
   }
 }

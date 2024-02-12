@@ -40,8 +40,7 @@ export class CardsComponent implements OnInit, OnChanges, OnDestroy {
     this.state.ArrayNumberGlobalComparacion.subscribe()
     this.state.CantCartasGlobal.subscribe()
     this.state.ArrayNumberCartasCorrectas.subscribe()
-
-    
+    console.log(this.IsPlaying)
   }
 
   ngOnInit(): void {
@@ -50,16 +49,16 @@ export class CardsComponent implements OnInit, OnChanges, OnDestroy {
 
   public empezar(): void {
     setTimeout(() => {
-      this.IsVisible = !this.IsVisible
+      this.IsVisible = false
       this.interval = setInterval(() => {
         this.checkCard()
-      },500)
+      },100)
     }, 2000)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['IsPlaying']) {
-
+      console.log('Ha cambiado el estado')
     }
   }
 
@@ -82,17 +81,21 @@ export class CardsComponent implements OnInit, OnChanges, OnDestroy {
     if(this.state.getNumberArrayCartasCorrectas().includes(parseInt(this.id))){
       this.IsMatched = true
       this.IsVisible = true
-    } else {
+    } else if(this.state.getNumberArrayComprobacion().includes(parseInt(this.id)) && !this.IsMatched){
+      this.IsVisible = true
+      this.IsSelected = true
+    } else if(this.state.getNumberArrayComprobacion().length == 0 && this.IsSelected) {
       this.IsVisible = false
       this.IsSelected = false
     }
+
+    
   }
 
   private comprobar(): void {
     if(this.state.getNumberArrayComprobacion().length == 2){
 
       if(this.state.getNumberArrayComprobacion()[0]/2 == this.state.getNumberArrayComprobacion()[1] || this.state.getNumberArrayComprobacion()[0] == this.state.getNumberArrayComprobacion()[1]/2){
-        console.log('La dos cartas son iguales')
         
         this.IsSelected = false
         this.IsMatched = true
@@ -101,8 +104,8 @@ export class CardsComponent implements OnInit, OnChanges, OnDestroy {
         this.state.addNumberToArrayCartasCorrectas(this.state.getNumberArrayComprobacion()[1])
         this.state.removeNumberArrayComprobacion()
 
+        this.state.addnumber()
       } else {
-        console.log('Las cartas no son iguales')
         this.state.removeNumberArrayComprobacion()
         this.IsSelected = false
         setTimeout(() => {
@@ -110,14 +113,13 @@ export class CardsComponent implements OnInit, OnChanges, OnDestroy {
         },200)
 
       }
-    } else {
-      console.log('Solo tengo 1 valor')
-    }
+    } 
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval)
     this.state.removeNumberArrayCartasCorrectas()
     this.state.removeNumberArrayComprobacion()
+    this.state.changenumber(0)
   }
 }
