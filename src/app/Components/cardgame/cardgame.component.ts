@@ -95,7 +95,6 @@ export class CardgameComponent implements OnDestroy {
     alert('Has perdido')
     clearInterval(this.interval)
     this.tiempo = 60
-    div.innerHTML = ''
     this.IsPlaying = 'false'
   }
 
