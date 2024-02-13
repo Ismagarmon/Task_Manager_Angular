@@ -89,10 +89,12 @@ export class CardgameComponent implements OnDestroy {
     this.actualizarpts(time)
     clearInterval(this.interval)
     this.tiempo = 60
+    this.IsPlaying = 'false'
   }
 
   private perder(div: HTMLDivElement): void {
     alert('Has perdido')
+    this.state.changenumber(0)
     clearInterval(this.interval)
     this.tiempo = 60
     this.IsPlaying = 'false'
@@ -124,7 +126,7 @@ export class CardgameComponent implements OnDestroy {
         complete: () => {
           alert('Se ha actualizado correctamente al usuario.')
           this.puntuacion = 0
-          this.IsPlaying = 'false'
+          
         },
         error: (err) => {
           alert(err)

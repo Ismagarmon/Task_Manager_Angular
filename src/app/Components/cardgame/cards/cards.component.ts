@@ -44,8 +44,11 @@ export class CardsComponent implements OnChanges, OnDestroy {
   }
 
   public empezar(): void {
+    this.IsVisible = true
     setTimeout(() => {
       this.IsVisible = false
+      this.IsMatched = false
+      this.IsSelected = false
       this.interval = setInterval(() => {
         this.checkCard()
       }, 100)
@@ -57,15 +60,17 @@ export class CardsComponent implements OnChanges, OnDestroy {
       if (this.IsPlaying === 'true') {
         this.state.removeNumberArrayCartasCorrectas()
         this.state.removeNumberArrayComprobacion()
-        this.state.changenumber(0)
         this.IsMatched = false
         this.IsSelected = false
-        this.IsVisible = true
+        this.IsVisible = false
         this.empezar()
         
         console.log('Ha comenzado el juego')
       } else {
         clearInterval(this.interval)
+        this.IsMatched = false
+        this.IsSelected = false
+        this.IsVisible = false
         console.log('Se ha terminado el juego')
       }
 
