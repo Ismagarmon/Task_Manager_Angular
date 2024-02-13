@@ -3,6 +3,7 @@
     height: 100%;
     list-style: none;
     min-height: calc(100vh - 64px);
+    background-color: gray;
 }
 
 .menu li {
@@ -36,4 +37,12 @@
     border: 1px solid purple;
     background-color: black;
     color: white;
+    border-radius: 1rem;
+    width: 30%;
+    height: 5rem;
+    padding-left: 5rem;
+}
+
+.li p {
+    margin-left: 1rem;
 }
